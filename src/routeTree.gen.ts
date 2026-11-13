@@ -15,7 +15,6 @@ import { Route as JobsRouteImport } from './routes/jobs'
 import { Route as MentorshipRouteImport } from './routes/mentorship'
 import { Route as ResourcesRouteImport } from './routes/resources'
 import { Route as SessionsIndexRouteImport } from './routes/sessions.index'
-import { Route as SessionsSlugRouteImport } from './routes/sessions.$slug'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -47,11 +46,6 @@ const SessionsIndexRoute = SessionsIndexRouteImport.update({
   path: '/sessions/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const SessionsSlugRoute = SessionsSlugRouteImport.update({
-  id: '/sessions/$slug',
-  path: '/sessions/$slug',
-  getParentRoute: () => rootRouteImport,
-} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -59,7 +53,6 @@ export interface FileRoutesByFullPath {
   '/jobs': typeof JobsRoute
   '/mentorship': typeof MentorshipRoute
   '/resources': typeof ResourcesRoute
-  '/sessions/$slug': typeof SessionsSlugRoute
   '/sessions/': typeof SessionsIndexRoute
 }
 export interface FileRoutesByTo {
@@ -68,7 +61,6 @@ export interface FileRoutesByTo {
   '/jobs': typeof JobsRoute
   '/mentorship': typeof MentorshipRoute
   '/resources': typeof ResourcesRoute
-  '/sessions/$slug': typeof SessionsSlugRoute
   '/sessions': typeof SessionsIndexRoute
 }
 export interface FileRoutesById {
@@ -78,7 +70,6 @@ export interface FileRoutesById {
   '/jobs': typeof JobsRoute
   '/mentorship': typeof MentorshipRoute
   '/resources': typeof ResourcesRoute
-  '/sessions/$slug': typeof SessionsSlugRoute
   '/sessions/': typeof SessionsIndexRoute
 }
 export interface FileRouteTypes {
@@ -89,7 +80,6 @@ export interface FileRouteTypes {
     | '/jobs'
     | '/mentorship'
     | '/resources'
-    | '/sessions/$slug'
     | '/sessions/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -98,7 +88,6 @@ export interface FileRouteTypes {
     | '/jobs'
     | '/mentorship'
     | '/resources'
-    | '/sessions/$slug'
     | '/sessions'
   id:
     | '__root__'
@@ -107,7 +96,6 @@ export interface FileRouteTypes {
     | '/jobs'
     | '/mentorship'
     | '/resources'
-    | '/sessions/$slug'
     | '/sessions/'
   fileRoutesById: FileRoutesById
 }
@@ -117,7 +105,6 @@ export interface RootRouteChildren {
   JobsRoute: typeof JobsRoute
   MentorshipRoute: typeof MentorshipRoute
   ResourcesRoute: typeof ResourcesRoute
-  SessionsSlugRoute: typeof SessionsSlugRoute
   SessionsIndexRoute: typeof SessionsIndexRoute
 }
 
@@ -165,13 +152,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SessionsIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/sessions/$slug': {
-      id: '/sessions/$slug'
-      path: '/sessions/$slug'
-      fullPath: '/sessions/$slug'
-      preLoaderRoute: typeof SessionsSlugRouteImport
-      parentRoute: typeof rootRouteImport
-    }
   }
 }
 
@@ -181,7 +161,6 @@ const rootRouteChildren: RootRouteChildren = {
   JobsRoute: JobsRoute,
   MentorshipRoute: MentorshipRoute,
   ResourcesRoute: ResourcesRoute,
-  SessionsSlugRoute: SessionsSlugRoute,
   SessionsIndexRoute: SessionsIndexRoute,
 }
 export const routeTree = rootRouteImport
