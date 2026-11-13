@@ -1,0 +1,2 @@
+ALTER TABLE public.mentors ADD COLUMN linkedin_url text;
+ALTER TABLE public.mentors ADD CONSTRAINT mentors_linkedin_url_valid CHECK (linkedin_url IS NULL OR (length(linkedin_url) <= 300 AND linkedin_url ~ '^https://(www\.)?linkedin\.com/in/[^[:space:]]+$'));

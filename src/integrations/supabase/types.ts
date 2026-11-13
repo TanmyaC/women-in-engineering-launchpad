@@ -139,6 +139,7 @@ export type Database = {
           booking_url: string
           created_at: string
           id: string
+          linkedin_url: string | null
           name: string
           role: string
           topics: string[]
@@ -147,6 +148,7 @@ export type Database = {
           booking_url: string
           created_at?: string
           id?: string
+          linkedin_url?: string | null
           name: string
           role: string
           topics?: string[]
@@ -155,6 +157,7 @@ export type Database = {
           booking_url?: string
           created_at?: string
           id?: string
+          linkedin_url?: string | null
           name?: string
           role?: string
           topics?: string[]
