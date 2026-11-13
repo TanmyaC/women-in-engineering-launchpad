@@ -2,7 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { cardClass } from "@/components/SiteShell";
 import { TopicBoard } from "@/components/TopicBoard";
 import { Button } from "@/components/ui/button";
-import { Code2, MessagesSquare, Compass, Mic2, Sprout } from "lucide-react";
+import { Code2, MessagesSquare, Compass, Mic2, Sprout, HeartHandshake, ShieldCheck } from "lucide-react";
 import hero from "@/assets/hero-idea-wall.jpg";
 
 export const Route = createFileRoute("/_authenticated/")({
@@ -19,10 +19,10 @@ const explore = [
 ] as const;
 
 const why = [
-  { emoji: "🌱", title: "Grow your skills", text: "Learn about opportunities for professional development and skill-building." },
-  { emoji: "💬", title: "Share the real stuff", text: "Swap experiences and advice on navigating the workplace." },
-  { emoji: "💪", title: "Beat imposter syndrome", text: "Support each other through self-doubt and work-life balance." },
-  { emoji: "🤝", title: "Mentor & be mentored", text: "Foster mentorship and peer support across Miro." },
+  { icon: Sprout, title: "Grow your skills", text: "Build skills and open new career doors." },
+  { icon: MessagesSquare, title: "Share the real stuff", text: "Exchange honest workplace experiences." },
+  { icon: ShieldCheck, title: "Build confidence", text: "Work through self-doubt together." },
+  { icon: HeartHandshake, title: "Mentor & be mentored", text: "Give and find support across Miro." },
 ];
 
 const how = [
@@ -79,22 +79,24 @@ function Index() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-6xl px-6 pb-20">
-        <div className="grid gap-10 lg:grid-cols-[1fr_1.5fr]">
+      <section aria-labelledby="mission-heading" className="mx-auto max-w-6xl px-6 pb-12">
+        <div>
           <div>
-            <p className="text-sm font-semibold uppercase tracking-widest text-primary">Our mission</p>
-            <h2 className="mt-3 text-3xl font-bold text-forest md:text-4xl">Fostering the growth, confidence and success of women in engineering.</h2>
-            <p className="mt-4 text-muted-foreground">Women in engineering are often underrepresented in leadership, wrestle with self-doubt and struggle to find the right growth opportunities. There wasn't a single place to connect — so we built one.</p>
+            <p className="flex items-center gap-3 text-sm font-semibold uppercase tracking-widest text-primary"><span aria-hidden="true" className="h-px w-8 bg-primary" />Our mission</p>
+            <h2 id="mission-heading" className="mt-3 text-3xl font-bold text-forest md:text-4xl">More confidence. More opportunity.</h2>
+            <p className="mt-3 text-muted-foreground">Helping women in engineering at Miro grow, lead and thrive — together.</p>
           </div>
-          <div className="grid gap-4 sm:grid-cols-2">
-            {why.map((w) => (
-              <div key={w.title} className={`${cardClass} group transition hover:-translate-y-1 hover:border-primary`}>
-                <span className="inline-block text-3xl transition group-hover:scale-125">{w.emoji}</span>
-                <h3 className="mt-3 text-lg font-bold text-forest">{w.title}</h3>
-                <p className="mt-1 text-sm text-muted-foreground">{w.text}</p>
-              </div>
+          <ul className="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+            {why.map(({ icon: Icon, title, text }) => (
+              <li key={title} className="flex gap-3 border-t border-sage/30 pt-4">
+                <Icon aria-hidden="true" className="mt-0.5 size-4 shrink-0 text-primary" strokeWidth={1.5} />
+                <div>
+                  <h3 className="text-lg font-bold text-forest">{title}</h3>
+                  <p className="mt-1 text-sm text-muted-foreground">{text}</p>
+                </div>
+              </li>
             ))}
-          </div>
+          </ul>
         </div>
       </section>
 
