@@ -35,6 +35,30 @@ export type Database = {
         }
         Relationships: []
       }
+      books: {
+        Row: {
+          cover_path: string | null
+          created_at: string
+          id: string
+          title: string
+          why: string
+        }
+        Insert: {
+          cover_path?: string | null
+          created_at?: string
+          id?: string
+          title: string
+          why: string
+        }
+        Update: {
+          cover_path?: string | null
+          created_at?: string
+          id?: string
+          title?: string
+          why?: string
+        }
+        Relationships: []
+      }
       job_tools: {
         Row: {
           created_at: string
