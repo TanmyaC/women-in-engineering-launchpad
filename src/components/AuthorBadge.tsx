@@ -7,6 +7,7 @@ import {
   AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
 import { supabase } from "@/integrations/supabase/client";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import type { Database } from "@/integrations/supabase/types";
 
 type Table = keyof Database["public"]["Tables"];
@@ -22,9 +23,10 @@ function useUserId() {
   return id;
 }
 
-export function AuthorBadge({ initials, className = "", entry, onEdit }: {
+export function AuthorBadge({ initials, name, className = "", entry, onEdit }: {
   onEdit?: () => void;
   initials?: string | null | undefined;
+  name?: string | null | undefined;
   className?: string;
   entry?: { table: Table; id: string; createdBy?: string | null | undefined };
 }) {
@@ -71,10 +73,17 @@ export function AuthorBadge({ initials, className = "", entry, onEdit }: {
         </AlertDialog>
       )}
       {initials && (
-        <span title={`Added by ${initials}`} aria-label={`Added by ${initials}`}
-          className="badge-initials inline-flex h-7 w-7 items-center justify-center rounded-full bg-sage/25 font-display text-[11px] font-semibold text-forest">
-          {initials}
-        </span>
+        <TooltipProvider delayDuration={100}>
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <span tabIndex={0} aria-label={`Added by ${name || initials}`}
+                className="badge-initials inline-flex h-7 w-7 cursor-default items-center justify-center rounded-full bg-sage/25 font-display text-[11px] font-semibold text-forest">
+                {initials}
+              </span>
+            </TooltipTrigger>
+            <TooltipContent>Added by {name || initials}</TooltipContent>
+          </Tooltip>
+        </TooltipProvider>
       )}
     </span>
   );

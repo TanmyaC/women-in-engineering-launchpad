@@ -116,7 +116,7 @@ export function TopicBoard() {
                   <p className="truncate font-medium">{t.title}</p>
                   <p className="text-xs opacity-60">{i === 0 ? "🔥 Most wanted" : i < 3 ? "Trending" : has ? "You're in" : "Tap to upvote"}</p>
                 </div>
-                <AuthorBadge initials={t.author_initials} entry={{ table: "topics", id: t.id, createdBy: t.created_by }} className="relative text-forest-foreground [&_.badge-initials]:bg-forest-foreground/20 [&_.badge-initials]:text-forest-foreground" />
+                <AuthorBadge initials={t.author_initials} name={t.author_name} entry={{ table: "topics", id: t.id, createdBy: t.created_by }} className="relative text-forest-foreground [&_.badge-initials]:bg-forest-foreground/20 [&_.badge-initials]:text-forest-foreground" />
                 <span className="relative font-display text-sm opacity-50">#{i + 1}</span>
               </li>
             );
