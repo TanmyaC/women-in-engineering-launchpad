@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useQueryClient } from "@tanstack/react-query";
-import { Trash2 } from "lucide-react";
+import { Pencil, Trash2 } from "lucide-react";
 import { toast } from "sonner";
 import {
   AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription,
@@ -22,7 +22,8 @@ function useUserId() {
   return id;
 }
 
-export function AuthorBadge({ initials, className = "", entry }: {
+export function AuthorBadge({ initials, className = "", entry, onEdit }: {
+  onEdit?: () => void;
   initials?: string | null | undefined;
   className?: string;
   entry?: { table: Table; id: string; createdBy?: string | null | undefined };
@@ -43,6 +44,12 @@ export function AuthorBadge({ initials, className = "", entry }: {
   if (!initials && !mine) return null;
   return (
     <span className={`inline-flex shrink-0 items-center gap-1 ${className}`}>
+      {mine && onEdit && (
+        <button type="button" onClick={onEdit} aria-label="Edit your entry" title="Edit your entry"
+          className="inline-flex h-7 w-7 items-center justify-center rounded-full opacity-60 transition hover:bg-muted hover:opacity-100">
+          <Pencil className="h-3.5 w-3.5" aria-hidden="true" />
+        </button>
+      )}
       {mine && (
         <AlertDialog>
           <AlertDialogTrigger asChild>
