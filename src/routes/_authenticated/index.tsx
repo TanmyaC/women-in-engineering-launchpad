@@ -101,16 +101,16 @@ function Index() {
       <section aria-labelledby="how-heading" className="border-y border-sage/25 bg-secondary/40">
         <div className="mx-auto max-w-6xl px-6 py-10 md:py-12">
           <div>
-            <p className="flex items-center gap-3 text-sm font-semibold text-primary"><span aria-hidden="true" className="h-px w-8 bg-primary" />How we do it</p>
-            <h2 id="how-heading" className="mt-3 text-2xl font-bold tracking-normal text-forest">Growth isn’t a solo project.</h2>
+            <p className="flex items-center gap-3 text-sm font-semibold uppercase tracking-widest text-primary"><span aria-hidden="true" className="h-px w-8 bg-primary" />How we do it</p>
+            <h2 id="how-heading" className="mt-3 text-3xl font-bold text-forest md:text-4xl">Growth isn’t a solo project.</h2>
           </div>
           <ol className="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-5">
             {how.map(({ icon: Icon, title, text }) => (
               <li key={title} className="flex gap-3 border-t border-sage/30 pt-4">
                 <Icon aria-hidden="true" className="mt-0.5 size-4 shrink-0 text-primary" strokeWidth={1.5} />
                 <div>
-                  <h3 className="text-sm font-semibold tracking-normal text-forest">{title}</h3>
-                  <p className="mt-1 text-sm leading-relaxed text-muted-foreground">{text}</p>
+                  <h3 className="text-lg font-bold text-forest">{title}</h3>
+                  <p className="mt-1 text-sm text-muted-foreground">{text}</p>
                 </div>
               </li>
             ))}
