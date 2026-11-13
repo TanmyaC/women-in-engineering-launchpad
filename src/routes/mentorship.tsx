@@ -96,21 +96,25 @@ function Mentorship() {
         {isLoading && <p className="text-muted-foreground">Loading mentors…</p>}
         {!isLoading && mentors.length === 0 && <p className="text-muted-foreground">No mentors yet — be the first!</p>}
         {mentors.map((m) => (
-          <div key={m.id} className={`${cardClass} flex flex-col`}>
-            <div className="flex h-14 w-14 items-center justify-center rounded-full bg-gradient-warm font-display text-xl font-bold text-primary-foreground">{m.name[0]}</div>
-            <h2 className="mt-4 text-xl font-bold text-forest">{m.name}</h2>
-            <p className="text-muted-foreground">{m.role}</p>
-            <div className="mt-3 flex flex-wrap gap-2">{m.topics.map((t) => <span key={t} className="rounded-full bg-secondary px-3 py-1 text-xs text-secondary-foreground">{t}</span>)}</div>
-            <div className="mt-auto pt-6">{m.linkedin_url ? <>
+          <div key={m.id} className="flex min-w-0 flex-col rounded-lg border border-border bg-card p-5 transition-colors hover:border-sage">
+            <div className="flex items-center gap-3">
+              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-secondary font-display text-lg font-semibold text-secondary-foreground">{m.name[0]}</div>
+              <div className="min-w-0">
+                <h2 className="text-lg font-semibold leading-snug text-forest [overflow-wrap:anywhere]">{m.name}</h2>
+                <p className="mt-0.5 text-sm text-muted-foreground">{m.role}</p>
+              </div>
+            </div>
+            <div className="mb-4 mt-4 flex flex-wrap gap-1.5">{m.topics.map((t) => <span key={t} className="rounded-md bg-secondary/60 px-2.5 py-1 text-xs text-secondary-foreground">{t}</span>)}</div>
+            <div className="relative mt-auto border-t border-border pt-3">{m.linkedin_url ? <>
               <div className="flex items-center gap-2">
-                <a href={m.linkedin_url} target="_blank" rel="noopener noreferrer" className="flex min-w-0 flex-1 items-start gap-2 rounded-sm text-sm text-forest underline-offset-4 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"><img src={linkedinLogo.url} alt="" width={20} height={20} className="h-5 w-5 shrink-0" /><span className="min-w-0 [overflow-wrap:anywhere]">{m.linkedin_url}</span></a>
+                <a href={m.linkedin_url} target="_blank" rel="noopener noreferrer" className="flex min-w-0 flex-1 items-start gap-2 rounded-sm text-xs leading-relaxed text-forest underline-offset-4 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"><img src={linkedinLogo.url} alt="" width={18} height={18} className="h-4.5 w-4.5 shrink-0" /><span className="min-w-0 [overflow-wrap:anywhere]">{m.linkedin_url}</span></a>
                 <TooltipProvider><Tooltip><TooltipTrigger asChild>
-                  <Button type="button" variant="outline" size="icon" className="h-11 w-11 shrink-0 rounded-full text-forest" aria-label={`Copy LinkedIn link for ${m.name}`} onClick={() => { if (m.linkedin_url) void copyLinkedIn(m.id, m.linkedin_url); }}>
+                  <Button type="button" variant="ghost" size="icon" className="h-9 w-9 shrink-0 text-muted-foreground hover:text-forest" aria-label={`Copy LinkedIn link for ${m.name}`} onClick={() => { if (m.linkedin_url) void copyLinkedIn(m.id, m.linkedin_url); }}>
                     {copyStatus[m.id] === "copied" ? <Check aria-hidden="true" /> : <Copy aria-hidden="true" />}
                   </Button>
                 </TooltipTrigger><TooltipContent>Copy LinkedIn link</TooltipContent></Tooltip></TooltipProvider>
               </div>
-              <p role="status" className="mt-2 min-h-5 text-xs text-muted-foreground">{copyStatus[m.id] === "copied" ? "Link copied!" : copyStatus[m.id] === "failed" ? "Copy unavailable. Select the link below." : ""}</p>
+              <p role="status" className={copyStatus[m.id] ? "mt-1 text-xs text-muted-foreground" : "sr-only"}>{copyStatus[m.id] === "copied" ? "Link copied!" : copyStatus[m.id] === "failed" ? "Copy unavailable. Select the link below." : ""}</p>
               {copyStatus[m.id] === "failed" && <input aria-label={`LinkedIn link for ${m.name}`} readOnly value={m.linkedin_url} onFocus={(event) => event.currentTarget.select()} className={`${input} mt-1 text-xs`} />}
             </> : <p className="text-sm text-muted-foreground">LinkedIn profile not yet added.</p>}</div>
           </div>
