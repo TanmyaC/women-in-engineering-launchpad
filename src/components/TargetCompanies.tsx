@@ -14,6 +14,7 @@ const input = "w-full rounded-lg border border-input bg-background px-3 py-2 fon
 export function TargetCompanies() {
   const qc = useQueryClient();
   const [open, setOpen] = useState(false);
+  const [expanded, setExpanded] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const { data: companies = [], isLoading } = useQuery({
     queryKey: ["target_companies"],
@@ -44,12 +45,16 @@ export function TargetCompanies() {
   return (
     <section className="mx-auto max-w-6xl px-6 pb-16">
       <div className="flex flex-wrap items-end justify-between gap-4">
-        <div>
+        <button type="button" onClick={() => setExpanded((x) => !x)} aria-expanded={expanded} className="flex items-start gap-3 text-left">
+          <span className={`mt-1 inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-secondary text-lg text-forest transition-transform duration-300 ${expanded ? "rotate-180" : ""}`} aria-hidden>⌄</span>
+          <div>
           <h2 className="text-3xl font-bold text-forest">Companies we're targeting</h2>
           <p className="mt-1 text-muted-foreground">Share where you're applying — find others aiming for the same place.</p>
-        </div>
-        {!open && <button onClick={() => setOpen(true)} className="rounded-full border border-forest px-6 py-3 font-medium text-forest transition hover:bg-secondary">+ Add a company</button>}
+          </div>
+        </button>
+        {expanded && !open && <button onClick={() => setOpen(true)} className="rounded-full border border-forest px-6 py-3 font-medium text-forest transition hover:bg-secondary">+ Add a company</button>}
       </div>
+      {expanded && (<>
       {open && (
         <form onSubmit={submit} className={`${cardClass} mt-6 grid gap-4`}>
           <label className="grid gap-1 text-sm font-medium">Company name<input name="name" placeholder="e.g. Adyen" className={input} maxLength={100} /></label>
@@ -73,6 +78,7 @@ export function TargetCompanies() {
           </div>
         ))}
       </div>
+      </>)}
     </section>
   );
 }
