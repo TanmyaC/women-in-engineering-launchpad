@@ -268,6 +268,36 @@ export type Database = {
         }
         Relationships: []
       }
+      prompts: {
+        Row: {
+          author_initials: string | null
+          created_at: string
+          created_by: string | null
+          description: string
+          id: string
+          prompt: string
+          title: string
+        }
+        Insert: {
+          author_initials?: string | null
+          created_at?: string
+          created_by?: string | null
+          description: string
+          id?: string
+          prompt: string
+          title: string
+        }
+        Update: {
+          author_initials?: string | null
+          created_at?: string
+          created_by?: string | null
+          description?: string
+          id?: string
+          prompt?: string
+          title?: string
+        }
+        Relationships: []
+      }
       target_companies: {
         Row: {
           author_initials: string | null
