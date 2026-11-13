@@ -1,5 +1,4 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { cardClass } from "@/components/SiteShell";
 import { TopicBoard } from "@/components/TopicBoard";
 import { Button } from "@/components/ui/button";
 import { Code2, MessagesSquare, Compass, Mic2, Sprout, HeartHandshake, ShieldCheck } from "lucide-react";
@@ -9,14 +8,6 @@ export const Route = createFileRoute("/_authenticated/")({
   head: () => ({ meta: [{ title: "Miro Women In Engineering — Our community home" }, { name: "description", content: "The home of Miro Women In Engineering: vote on session topics, find a mentor, prep for interviews and grow together." }, { property: "og:title", content: "Miro Women In Engineering — Our community home" }, { property: "og:description", content: "Vote on session topics, find a mentor, prep for interviews and grow together." }, { property: "og:type", content: "website" }, { name: "twitter:card", content: "summary_large_image" }] }),
   component: Index,
 });
-
-const explore = [
-  { to: "/sessions", title: "Session notes", text: "Catch up on what we've learned together.", emoji: "📝" },
-  { to: "/mentorship", title: "Mentorship", text: "Book a mentor — or become one.", emoji: "🤝" },
-  { to: "/interview-prep", title: "Interview prep", text: "General tips and guides per function.", emoji: "🎯" },
-  { to: "/jobs", title: "Finding a job", text: "Search, CVs, LinkedIn and negotiation.", emoji: "🚀" },
-  { to: "/resources", title: "Useful resources", text: "Links our members swear by.", emoji: "📚" },
-] as const;
 
 const why = [
   { icon: Sprout, title: "Grow your skills", text: "Build skills and open new career doors." },
@@ -60,23 +51,6 @@ function Index() {
 
       <section id="topics" className="mx-auto max-w-6xl scroll-mt-24 px-6 pb-20">
         <TopicBoard />
-      </section>
-
-      <section className="mx-auto max-w-6xl px-6 pb-20">
-        <div className="flex items-end justify-between gap-4">
-          <h2 className="text-3xl font-bold text-forest md:text-4xl">Explore the hub</h2>
-          <p className="hidden text-muted-foreground md:block">Everything our community has built, in one place.</p>
-        </div>
-        <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-5">
-          {explore.map((t) => (
-            <Link key={t.to} to={t.to} className={`${cardClass} group transition hover:-translate-y-1 hover:border-primary`}>
-              <span className="text-3xl transition group-hover:scale-125 inline-block">{t.emoji}</span>
-              <h3 className="mt-4 text-lg font-bold text-forest">{t.title}</h3>
-              <p className="mt-1 text-sm text-muted-foreground">{t.text}</p>
-              <span className="mt-4 inline-block text-sm font-medium text-primary">Go →</span>
-            </Link>
-          ))}
-        </div>
       </section>
 
       <section aria-labelledby="mission-heading" className="mx-auto max-w-6xl px-6 pb-12">
