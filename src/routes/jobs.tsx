@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { PageHeader } from "@/components/SiteShell";
 import { JobTools } from "@/components/JobTools";
+import { BestPractices } from "@/components/BestPractices";
 import { AiJobJourney } from "@/components/AiJobJourney";
 import { TargetCompanies } from "@/components/TargetCompanies";
 
@@ -16,6 +17,7 @@ function Jobs() {
       <AiJobJourney />
       <TargetCompanies />
       <JobTools />
+      <BestPractices />
     </>
   );
 }
