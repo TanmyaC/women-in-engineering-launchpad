@@ -10,7 +10,7 @@ import { Button } from "@/components/ui/button";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { mentorProfileSchema as schema } from "@/lib/mentor-profile";
 
-export const Route = createFileRoute("/mentorship")({
+export const Route = createFileRoute("/_authenticated/mentorship")({
   head: () => ({ meta: [{ title: "Mentorship — Miro Women In Engineering" }, { name: "description", content: "Connect with a mentor on LinkedIn or add yourself as a mentor." }, { property: "og:title", content: "Mentorship — Miro Women In Engineering" }, { property: "og:description", content: "Connect with a mentor on LinkedIn or add yourself as a mentor." }, { property: "og:type", content: "website" }, { name: "twitter:card", content: "summary_large_image" }] }),
   component: Mentorship,
 });
