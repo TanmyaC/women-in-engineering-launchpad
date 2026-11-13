@@ -54,7 +54,7 @@ export function BookShelf() {
           <h2 className="text-3xl font-bold text-forest">Books we recommend</h2>
           <p className="mt-1 text-muted-foreground">Reads that shaped your career — share them with the group.</p>
         </div>
-        {!open && <button onClick={() => setOpen(true)} className="rounded-full border border-forest px-6 py-3 font-medium text-forest transition hover:bg-secondary">+ Add a book</button>}
+        {!open && <button onClick={() => setOpen(true)} className="inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3 font-semibold text-primary-foreground shadow-md transition hover:-translate-y-0.5 hover:opacity-90">+ Add a book</button>}
       </div>
       {open && (
         <form onSubmit={submit} className={`${cardClass} mt-6 grid gap-4`}>
