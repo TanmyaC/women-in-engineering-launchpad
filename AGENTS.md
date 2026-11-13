@@ -33,3 +33,4 @@ use the editor.
 - Site content (sessions, interview prep, resources, AI job journey) lives in `src/data/content.ts` so new docs are added as data, not new components; mentors are loaded from Supabase.
 - Shared header/footer live in `src/components/SiteShell.tsx`, rendered from `__root.tsx`.
 - Community-contributed engineering resources and one-line tips are stored in Cloud by topic and rendered through shared forms so contributions persist and stay separated by interview type.
+- Mentor form validation lives in a shared schema with focused tests so optional profile links are validated before saving to Cloud.
