@@ -131,7 +131,6 @@ export const interviewPrep = {
 export const resources = [
   { title: "Tech Interview Handbook", url: "https://www.techinterviewhandbook.org/", category: "Interview prep" },
   { title: "Levels.fyi — salary data", url: "https://www.levels.fyi/", category: "Job search" },
-  { title: "AnitaB.org", url: "https://anitab.org/", category: "Community" },
   { title: "StaffEng — stories & guides", url: "https://staffeng.com/", category: "Career growth" },
 ];
 
