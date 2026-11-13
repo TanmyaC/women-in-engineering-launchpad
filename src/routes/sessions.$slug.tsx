@@ -1,5 +1,4 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
-import { cardClass } from "@/components/SiteShell";
 import { sessions } from "@/data/content";
 import { useState } from "react";
 import { PdfViewer } from "@/components/PdfViewer";
