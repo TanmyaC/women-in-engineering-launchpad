@@ -290,17 +290,54 @@ export type Database = {
         }
         Relationships: []
       }
+      user_roles: {
+        Row: {
+          id: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Insert: {
+          id?: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Update: {
+          id?: string
+          role?: Database["public"]["Enums"]["app_role"]
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
+      admin_get_invite_code: { Args: never; Returns: string }
+      admin_list_members: {
+        Args: never
+        Returns: {
+          email: string
+          full_name: string
+          joined_at: string
+          user_id: string
+        }[]
+      }
+      admin_remove_member: { Args: { _user_id: string }; Returns: undefined }
+      admin_rotate_invite_code: { Args: never; Returns: string }
+      has_role: {
+        Args: {
+          _role: Database["public"]["Enums"]["app_role"]
+          _user_id: string
+        }
+        Returns: boolean
+      }
       is_member: { Args: { _user_id: string }; Returns: boolean }
       redeem_invite: { Args: { _code: string }; Returns: boolean }
       upvote_topic: { Args: { _id: string }; Returns: number }
     }
     Enums: {
-      [_ in never]: never
+      app_role: "admin"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -427,6 +464,8 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      app_role: ["admin"],
+    },
   },
 } as const

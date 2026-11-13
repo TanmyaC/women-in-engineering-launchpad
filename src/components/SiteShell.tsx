@@ -1,7 +1,8 @@
 import { Link, useNavigate } from "@tanstack/react-router";
 import { useEffect, useState, type ReactNode } from "react";
 import { useQueryClient } from "@tanstack/react-query";
-import { ChevronDown, Lightbulb, LogOut } from "lucide-react";
+import { ChevronDown, Lightbulb, LogOut, Shield } from "lucide-react";
+import { useIsAdmin } from "@/hooks/use-is-admin";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
@@ -30,6 +31,7 @@ function useSignedIn() {
 export function SiteShell({ children }: { children: ReactNode }) {
   const name = useSignedIn();
   const navigate = useNavigate();
+  const { data: isAdmin } = useIsAdmin();
   const queryClient = useQueryClient();
   const signOut = async () => {
     await queryClient.cancelQueries();
@@ -70,6 +72,11 @@ export function SiteShell({ children }: { children: ReactNode }) {
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end">
+                {isAdmin && (
+                  <DropdownMenuItem onSelect={() => navigate({ to: "/admin" })}>
+                    <Shield aria-hidden="true" /> Admin
+                  </DropdownMenuItem>
+                )}
                 <DropdownMenuItem onSelect={signOut}>
                   <LogOut aria-hidden="true" /> Sign out
                 </DropdownMenuItem>
