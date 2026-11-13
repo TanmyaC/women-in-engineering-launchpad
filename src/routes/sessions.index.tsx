@@ -19,6 +19,7 @@ function Sessions() {
               <span className="text-muted-foreground">{new Date(s.date).toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" })}</span>
             </div>
             <h2 className="mt-4 text-2xl font-bold text-forest">{s.title}</h2>
+            <p className="mt-1 text-sm font-medium text-primary">{s.subtitle}</p>
             <p className="mt-2 text-muted-foreground">{s.summary}</p>
           </Link>
         ))}
