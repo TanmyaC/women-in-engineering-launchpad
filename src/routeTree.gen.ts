@@ -9,159 +9,161 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as IndexRouteImport } from './routes/index'
-import { Route as InterviewPrepRouteImport } from './routes/interview-prep'
-import { Route as JobsRouteImport } from './routes/jobs'
-import { Route as MentorshipRouteImport } from './routes/mentorship'
-import { Route as ResourcesRouteImport } from './routes/resources'
-import { Route as SessionsIndexRouteImport } from './routes/sessions.index'
+import { Route as AuthenticatedIndexRouteImport } from './routes/_authenticated/index'
+import { Route as AuthenticatedInterviewPrepRouteImport } from './routes/_authenticated/interview-prep'
+import { Route as AuthenticatedJobsRouteImport } from './routes/_authenticated/jobs'
+import { Route as AuthenticatedMentorshipRouteImport } from './routes/_authenticated/mentorship'
+import { Route as AuthenticatedResourcesRouteImport } from './routes/_authenticated/resources'
+import { Route as AuthenticatedSessionsIndexRouteImport } from './routes/_authenticated/sessions.index'
 
-const IndexRoute = IndexRouteImport.update({
-  id: '/',
+const AuthenticatedIndexRoute = AuthenticatedIndexRouteImport.update({
+  id: '/_authenticated/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const InterviewPrepRoute = InterviewPrepRouteImport.update({
-  id: '/interview-prep',
-  path: '/interview-prep',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const JobsRoute = JobsRouteImport.update({
-  id: '/jobs',
+const AuthenticatedInterviewPrepRoute =
+  AuthenticatedInterviewPrepRouteImport.update({
+    id: '/_authenticated/interview-prep',
+    path: '/interview-prep',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const AuthenticatedJobsRoute = AuthenticatedJobsRouteImport.update({
+  id: '/_authenticated/jobs',
   path: '/jobs',
   getParentRoute: () => rootRouteImport,
 } as any)
-const MentorshipRoute = MentorshipRouteImport.update({
-  id: '/mentorship',
+const AuthenticatedMentorshipRoute = AuthenticatedMentorshipRouteImport.update({
+  id: '/_authenticated/mentorship',
   path: '/mentorship',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ResourcesRoute = ResourcesRouteImport.update({
-  id: '/resources',
+const AuthenticatedResourcesRoute = AuthenticatedResourcesRouteImport.update({
+  id: '/_authenticated/resources',
   path: '/resources',
   getParentRoute: () => rootRouteImport,
 } as any)
-const SessionsIndexRoute = SessionsIndexRouteImport.update({
-  id: '/sessions/',
-  path: '/sessions/',
-  getParentRoute: () => rootRouteImport,
-} as any)
+const AuthenticatedSessionsIndexRoute =
+  AuthenticatedSessionsIndexRouteImport.update({
+    id: '/_authenticated/sessions/',
+    path: '/sessions/',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 
 export interface FileRoutesByFullPath {
-  '/': typeof IndexRoute
-  '/interview-prep': typeof InterviewPrepRoute
-  '/jobs': typeof JobsRoute
-  '/mentorship': typeof MentorshipRoute
-  '/resources': typeof ResourcesRoute
-  '/sessions/': typeof SessionsIndexRoute
+  '/interview-prep': typeof AuthenticatedInterviewPrepRoute
+  '/jobs': typeof AuthenticatedJobsRoute
+  '/mentorship': typeof AuthenticatedMentorshipRoute
+  '/resources': typeof AuthenticatedResourcesRoute
+  '/': typeof AuthenticatedIndexRoute
+  '/sessions/': typeof AuthenticatedSessionsIndexRoute
 }
 export interface FileRoutesByTo {
-  '/': typeof IndexRoute
-  '/interview-prep': typeof InterviewPrepRoute
-  '/jobs': typeof JobsRoute
-  '/mentorship': typeof MentorshipRoute
-  '/resources': typeof ResourcesRoute
-  '/sessions': typeof SessionsIndexRoute
+  '/interview-prep': typeof AuthenticatedInterviewPrepRoute
+  '/jobs': typeof AuthenticatedJobsRoute
+  '/mentorship': typeof AuthenticatedMentorshipRoute
+  '/resources': typeof AuthenticatedResourcesRoute
+  '/': typeof AuthenticatedIndexRoute
+  '/sessions': typeof AuthenticatedSessionsIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
-  '/': typeof IndexRoute
-  '/interview-prep': typeof InterviewPrepRoute
-  '/jobs': typeof JobsRoute
-  '/mentorship': typeof MentorshipRoute
-  '/resources': typeof ResourcesRoute
-  '/sessions/': typeof SessionsIndexRoute
+  '/_authenticated/interview-prep': typeof AuthenticatedInterviewPrepRoute
+  '/_authenticated/jobs': typeof AuthenticatedJobsRoute
+  '/_authenticated/mentorship': typeof AuthenticatedMentorshipRoute
+  '/_authenticated/resources': typeof AuthenticatedResourcesRoute
+  '/_authenticated/': typeof AuthenticatedIndexRoute
+  '/_authenticated/sessions/': typeof AuthenticatedSessionsIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
-    | '/'
     | '/interview-prep'
     | '/jobs'
     | '/mentorship'
     | '/resources'
+    | '/'
     | '/sessions/'
   fileRoutesByTo: FileRoutesByTo
   to:
-    | '/'
     | '/interview-prep'
     | '/jobs'
     | '/mentorship'
     | '/resources'
+    | '/'
     | '/sessions'
   id:
     | '__root__'
-    | '/'
-    | '/interview-prep'
-    | '/jobs'
-    | '/mentorship'
-    | '/resources'
-    | '/sessions/'
+    | '/_authenticated/interview-prep'
+    | '/_authenticated/jobs'
+    | '/_authenticated/mentorship'
+    | '/_authenticated/resources'
+    | '/_authenticated/'
+    | '/_authenticated/sessions/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
-  IndexRoute: typeof IndexRoute
-  InterviewPrepRoute: typeof InterviewPrepRoute
-  JobsRoute: typeof JobsRoute
-  MentorshipRoute: typeof MentorshipRoute
-  ResourcesRoute: typeof ResourcesRoute
-  SessionsIndexRoute: typeof SessionsIndexRoute
+  AuthenticatedInterviewPrepRoute: typeof AuthenticatedInterviewPrepRoute
+  AuthenticatedJobsRoute: typeof AuthenticatedJobsRoute
+  AuthenticatedMentorshipRoute: typeof AuthenticatedMentorshipRoute
+  AuthenticatedResourcesRoute: typeof AuthenticatedResourcesRoute
+  AuthenticatedIndexRoute: typeof AuthenticatedIndexRoute
+  AuthenticatedSessionsIndexRoute: typeof AuthenticatedSessionsIndexRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/': {
-      id: '/'
+    '/_authenticated/': {
+      id: '/_authenticated/'
       path: '/'
       fullPath: '/'
-      preLoaderRoute: typeof IndexRouteImport
+      preLoaderRoute: typeof AuthenticatedIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/interview-prep': {
-      id: '/interview-prep'
+    '/_authenticated/interview-prep': {
+      id: '/_authenticated/interview-prep'
       path: '/interview-prep'
       fullPath: '/interview-prep'
-      preLoaderRoute: typeof InterviewPrepRouteImport
+      preLoaderRoute: typeof AuthenticatedInterviewPrepRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/jobs': {
-      id: '/jobs'
+    '/_authenticated/jobs': {
+      id: '/_authenticated/jobs'
       path: '/jobs'
       fullPath: '/jobs'
-      preLoaderRoute: typeof JobsRouteImport
+      preLoaderRoute: typeof AuthenticatedJobsRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/mentorship': {
-      id: '/mentorship'
+    '/_authenticated/mentorship': {
+      id: '/_authenticated/mentorship'
       path: '/mentorship'
       fullPath: '/mentorship'
-      preLoaderRoute: typeof MentorshipRouteImport
+      preLoaderRoute: typeof AuthenticatedMentorshipRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/resources': {
-      id: '/resources'
+    '/_authenticated/resources': {
+      id: '/_authenticated/resources'
       path: '/resources'
       fullPath: '/resources'
-      preLoaderRoute: typeof ResourcesRouteImport
+      preLoaderRoute: typeof AuthenticatedResourcesRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/sessions/': {
-      id: '/sessions/'
+    '/_authenticated/sessions/': {
+      id: '/_authenticated/sessions/'
       path: '/sessions'
       fullPath: '/sessions/'
-      preLoaderRoute: typeof SessionsIndexRouteImport
+      preLoaderRoute: typeof AuthenticatedSessionsIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
-  IndexRoute: IndexRoute,
-  InterviewPrepRoute: InterviewPrepRoute,
-  JobsRoute: JobsRoute,
-  MentorshipRoute: MentorshipRoute,
-  ResourcesRoute: ResourcesRoute,
-  SessionsIndexRoute: SessionsIndexRoute,
+  AuthenticatedInterviewPrepRoute: AuthenticatedInterviewPrepRoute,
+  AuthenticatedJobsRoute: AuthenticatedJobsRoute,
+  AuthenticatedMentorshipRoute: AuthenticatedMentorshipRoute,
+  AuthenticatedResourcesRoute: AuthenticatedResourcesRoute,
+  AuthenticatedIndexRoute: AuthenticatedIndexRoute,
+  AuthenticatedSessionsIndexRoute: AuthenticatedSessionsIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

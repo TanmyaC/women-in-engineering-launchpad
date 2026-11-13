@@ -1,6 +1,8 @@
-import { Link } from "@tanstack/react-router";
-import type { ReactNode } from "react";
-import { Lightbulb } from "lucide-react";
+import { Link, useNavigate } from "@tanstack/react-router";
+import { useEffect, useState, type ReactNode } from "react";
+import { useQueryClient } from "@tanstack/react-query";
+import { Lightbulb, LogOut } from "lucide-react";
+import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 
@@ -12,7 +14,28 @@ const nav = [
   { to: "/resources", label: "Resources" },
 ] as const;
 
+function useSignedIn() {
+  const [name, setName] = useState<string | null>(null);
+  useEffect(() => {
+    const read = (u: { email?: string; user_metadata?: Record<string, unknown> } | null | undefined) =>
+      setName(u ? String(u.user_metadata?.["full_name"] ?? u.email ?? "Member") : null);
+    supabase.auth.getSession().then(({ data }) => read(data.session?.user));
+    const { data } = supabase.auth.onAuthStateChange((_e, s) => read(s?.user));
+    return () => data.subscription.unsubscribe();
+  }, []);
+  return name;
+}
+
 export function SiteShell({ children }: { children: ReactNode }) {
+  const name = useSignedIn();
+  const navigate = useNavigate();
+  const queryClient = useQueryClient();
+  const signOut = async () => {
+    await queryClient.cancelQueries();
+    queryClient.clear();
+    await supabase.auth.signOut();
+    navigate({ to: "/auth", replace: true });
+  };
   return (
     <div className="flex min-h-screen flex-col">
       <header className="sticky top-0 z-20 border-b border-border bg-background/90 backdrop-blur">
@@ -21,7 +44,7 @@ export function SiteShell({ children }: { children: ReactNode }) {
             <span className="h-3 w-3 rounded-full bg-gradient-warm" />
             Miro Women In Engineering
           </Link>
-          <nav className="flex flex-wrap items-center gap-1 text-sm">
+          {name && <nav className="flex flex-wrap items-center gap-1 text-sm">
             {nav.map((n) => (
               <Link key={n.to} to={n.to} className="rounded-full px-3 py-1.5 text-muted-foreground transition-colors hover:bg-muted hover:text-foreground" activeProps={{ className: "bg-secondary text-secondary-foreground" }}>
                 {n.label}
@@ -39,7 +62,11 @@ export function SiteShell({ children }: { children: ReactNode }) {
                 <TooltipContent>Ideas &amp; feedback</TooltipContent>
               </Tooltip>
             </TooltipProvider>
-          </nav>
+            <span className="ml-2 hidden text-muted-foreground lg:inline">{name.split(" ")[0]}</span>
+            <Button variant="ghost" size="sm" onClick={signOut} className="rounded-full">
+              <LogOut aria-hidden="true" /> Sign out
+            </Button>
+          </nav>}
         </div>
       </header>
       <main className="flex-1">{children}</main>
