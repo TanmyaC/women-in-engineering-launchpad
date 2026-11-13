@@ -63,10 +63,10 @@ function Mentorship() {
         ) : (
           <form onSubmit={submit} className={`${cardClass} grid gap-4 md:grid-cols-2`}>
             <h2 className="text-2xl font-bold text-forest md:col-span-2">Become a mentor</h2>
-            <label className="grid gap-1 text-sm font-medium">Name<input name="name" className={input} maxLength={100} /></label>
-            <label className="grid gap-1 text-sm font-medium">Function<input name="role" list="functions" placeholder="e.g. Engineering, Product, Design" className={input} maxLength={100} /><datalist id="functions">{["Engineering", "Product", "Design", "Data", "Engineering Management", "Research"].map((f) => <option key={f} value={f} />)}</datalist></label>
-            <label className="grid gap-1 text-sm font-medium">Topics you can help with<input name="topics" placeholder="Career growth, System design" className={input} /><span className="text-xs font-normal text-muted-foreground">Separate with commas</span></label>
-            <label className="grid gap-1 text-sm font-medium">Booking link<input name="booking_url" placeholder="https://calendly.com/your-name" className={input} maxLength={300} /></label>
+            <label className="grid content-start gap-1 text-sm font-medium">Name<input name="name" className={input} maxLength={100} /></label>
+            <label className="grid content-start gap-1 text-sm font-medium">Function<input name="role" list="functions" placeholder="e.g. Engineering, Product, Design" className={input} maxLength={100} /><datalist id="functions">{["Engineering", "Product", "Design", "Data", "Engineering Management", "Research"].map((f) => <option key={f} value={f} />)}</datalist></label>
+            <label className="grid content-start gap-1 text-sm font-medium">Topics you can help with<input name="topics" placeholder="Career growth, System design" className={input} /><span className="text-xs font-normal text-muted-foreground">Separate with commas</span></label>
+            <label className="grid content-start gap-1 text-sm font-medium">Booking link<input name="booking_url" placeholder="https://calendly.com/your-name" className={input} maxLength={300} /></label>
             {error && <p className="text-sm text-destructive md:col-span-2">{error}</p>}
             <div className="flex gap-3 md:col-span-2">
               <button disabled={add.isPending} className="rounded-full bg-primary px-6 py-2.5 font-medium text-primary-foreground transition hover:opacity-90 disabled:opacity-60">{add.isPending ? "Saving…" : "Add me"}</button>
