@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { z } from "zod";
 import { supabase } from "@/integrations/supabase/client";
 
-type Topic = { id: string; title: string; votes: number; created_at: string };
+type Topic = { id: string; title: string; votes: number; created_at: string; author_initials?: string | null };
 const KEY = "mwie-voted-topics";
 const titleSchema = z.string().trim().min(3, "A few more words please").max(120, "Keep it under 120 characters");
 
