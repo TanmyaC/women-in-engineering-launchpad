@@ -65,6 +65,30 @@ export type Database = {
         }
         Relationships: []
       }
+      target_companies: {
+        Row: {
+          created_at: string
+          id: string
+          name: string
+          note: string | null
+          url: string | null
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          name: string
+          note?: string | null
+          url?: string | null
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          name?: string
+          note?: string | null
+          url?: string | null
+        }
+        Relationships: []
+      }
       topics: {
         Row: {
           created_at: string
