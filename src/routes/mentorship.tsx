@@ -107,7 +107,7 @@ function Mentorship() {
             <div className="mb-4 mt-4 flex flex-wrap gap-1.5">{m.topics.map((t) => <span key={t} className="rounded-md bg-secondary/60 px-2.5 py-1 text-xs text-secondary-foreground">{t}</span>)}</div>
             <div className="relative mt-auto border-t border-border pt-3">{m.linkedin_url ? <>
               <div className="flex items-center gap-2">
-                <a href={m.linkedin_url} target="_blank" rel="noopener noreferrer" className="flex min-w-0 flex-1 items-start gap-2 rounded-sm text-xs leading-relaxed text-forest underline-offset-4 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"><img src={linkedinLogo.url} alt="" width={18} height={18} className="h-4.5 w-4.5 shrink-0" /><span className="min-w-0 [overflow-wrap:anywhere]">{m.linkedin_url}</span></a>
+                <a href={m.linkedin_url} target="_blank" rel="noopener noreferrer" className="flex min-w-0 flex-1 items-center gap-2 rounded-sm text-xs leading-relaxed text-forest underline-offset-4 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"><img src={linkedinLogo.url} alt="" width={18} height={18} className="h-4.5 w-4.5 shrink-0" /><span className="min-w-0 [overflow-wrap:anywhere]">{m.linkedin_url}</span></a>
                 <TooltipProvider><Tooltip><TooltipTrigger asChild>
                   <Button type="button" variant="ghost" size="icon" className="h-9 w-9 shrink-0 text-muted-foreground hover:text-forest" aria-label={`Copy LinkedIn link for ${m.name}`} onClick={() => { if (m.linkedin_url) void copyLinkedIn(m.id, m.linkedin_url); }}>
                     {copyStatus[m.id] === "copied" ? <Check aria-hidden="true" /> : <Copy aria-hidden="true" />}
