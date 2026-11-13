@@ -169,6 +169,13 @@
       "when": 1794610291949,
       "tag": "0023_author_names",
       "breakpoints": true
+    },
+    {
+      "idx": 24,
+      "version": "7",
+      "when": 1794610368777,
+      "tag": "0024_book_votes",
+      "breakpoints": true
     }
   ]
 }
