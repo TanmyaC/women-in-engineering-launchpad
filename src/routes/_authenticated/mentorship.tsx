@@ -21,6 +21,7 @@ const input = "w-full rounded-lg border border-input bg-background px-3 py-2 out
 function Mentorship() {
   const qc = useQueryClient();
   const [open, setOpen] = useState(false);
+  const [editing, setEditing] = useState<{ id: string; name: string; role: string; topics: string[]; linkedin_url: string | null } | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [done, setDone] = useState(false);
   const [copyStatus, setCopyStatus] = useState<Record<string, "copied" | "failed">>({});
@@ -34,10 +35,12 @@ function Mentorship() {
   });
   const add = useMutation({
     mutationFn: async (m: z.infer<typeof schema>) => {
-      const { error } = await supabase.from("mentors").insert(m);
+      const { error } = editing
+        ? await supabase.from("mentors").update(m).eq("id", editing.id)
+        : await supabase.from("mentors").insert(m);
       if (error) throw error;
     },
-    onSuccess: () => { qc.invalidateQueries({ queryKey: ["mentors"] }); setOpen(false); setDone(true); },
+    onSuccess: () => { qc.invalidateQueries({ queryKey: ["mentors"] }); setOpen(false); setDone(!editing); setEditing(null); },
     onError: () => setError("Something went wrong saving your profile. Please try again."),
   });
 
@@ -77,18 +80,18 @@ function Mentorship() {
       <section className="mx-auto max-w-6xl px-6 pb-8">
         {done && <p className="mb-4 rounded-lg bg-secondary px-4 py-3 text-secondary-foreground">Thank you! You're now listed as a mentor.</p>}
         {!open ? (
-          <Button size="lg" onClick={() => { setOpen(true); setDone(false); }} className="h-12 w-full rounded-lg px-6 text-base font-semibold shadow-soft sm:w-auto"><UserPlus aria-hidden="true" />Add yourself as a mentor</Button>
+          <Button size="lg" onClick={() => { setEditing(null); setOpen(true); setDone(false); }} className="h-12 w-full rounded-lg px-6 text-base font-semibold shadow-soft sm:w-auto"><UserPlus aria-hidden="true" />Add yourself as a mentor</Button>
         ) : (
-          <form onSubmit={submit} className={`${cardClass} grid gap-4 md:grid-cols-2`}>
-            <h2 className="text-2xl font-bold text-forest md:col-span-2">Become a mentor</h2>
-            <label className="grid content-start gap-1 text-sm font-medium">Name<input name="name" className={input} maxLength={100} /></label>
-            <label className="grid content-start gap-1 text-sm font-medium">Function<input name="role" list="functions" placeholder="e.g. Engineering, Product, Design" className={input} maxLength={100} /><datalist id="functions">{["Engineering", "Product", "Design", "Data", "Engineering Management", "Research"].map((f) => <option key={f} value={f} />)}</datalist></label>
-            <label className="grid content-start gap-1 text-sm font-medium">Topics you can help with<input name="topics" placeholder="Career growth, System design" className={input} /><span className="text-xs font-normal text-muted-foreground">Separate with commas</span></label>
-            <label className="grid content-start gap-1 text-sm font-medium">LinkedIn profile<input name="linkedin_url" type="url" required placeholder="https://www.linkedin.com/in/your-name" className={input} maxLength={300} /><span className="text-xs font-normal text-muted-foreground">Members will reach out to you on LinkedIn.</span></label>
+          <form key={editing?.id ?? "new"} onSubmit={submit} className={`${cardClass} grid gap-4 md:grid-cols-2`}>
+            <h2 className="text-2xl font-bold text-forest md:col-span-2">{editing ? "Edit your mentor card" : "Become a mentor"}</h2>
+            <label className="grid content-start gap-1 text-sm font-medium">Name<input name="name" defaultValue={editing?.name} className={input} maxLength={100} /></label>
+            <label className="grid content-start gap-1 text-sm font-medium">Function<input name="role" defaultValue={editing?.role} list="functions" placeholder="e.g. Engineering, Product, Design" className={input} maxLength={100} /><datalist id="functions">{["Engineering", "Product", "Design", "Data", "Engineering Management", "Research"].map((f) => <option key={f} value={f} />)}</datalist></label>
+            <label className="grid content-start gap-1 text-sm font-medium">Topics you can help with<input name="topics" defaultValue={editing?.topics.join(", ")} placeholder="Career growth, System design" className={input} /><span className="text-xs font-normal text-muted-foreground">Separate with commas</span></label>
+            <label className="grid content-start gap-1 text-sm font-medium">LinkedIn profile<input name="linkedin_url" defaultValue={editing?.linkedin_url ?? ""} type="url" required placeholder="https://www.linkedin.com/in/your-name" className={input} maxLength={300} /><span className="text-xs font-normal text-muted-foreground">Members will reach out to you on LinkedIn.</span></label>
             {error && <p className="text-sm text-destructive md:col-span-2">{error}</p>}
             <div className="flex gap-3 md:col-span-2">
-              <Button disabled={add.isPending} className="h-auto rounded-full px-6 py-2.5">{add.isPending ? "Saving…" : "Add me"}</Button>
-              <Button variant="ghost" type="button" onClick={() => setOpen(false)} className="h-auto rounded-full px-6 py-2.5 text-muted-foreground hover:bg-muted">Cancel</Button>
+              <Button disabled={add.isPending} className="h-auto rounded-full px-6 py-2.5">{add.isPending ? "Saving…" : editing ? "Save changes" : "Add me"}</Button>
+              <Button variant="ghost" type="button" onClick={() => { setOpen(false); setEditing(null); }} className="h-auto rounded-full px-6 py-2.5 text-muted-foreground hover:bg-muted">Cancel</Button>
             </div>
           </form>
         )}
@@ -104,7 +107,7 @@ function Mentorship() {
                 <h2 className="text-lg font-semibold leading-snug text-forest [overflow-wrap:anywhere]">{m.name}</h2>
                 <p className="mt-0.5 text-sm text-muted-foreground">{m.role}</p>
               </div>
-              <AuthorBadge initials={m.author_initials} entry={{ table: "mentors", id: m.id, createdBy: m.created_by }} className="ml-auto self-start" />
+              <AuthorBadge onEdit={() => { setEditing(m); setOpen(true); setDone(false); window.scrollTo({ top: 0, behavior: "smooth" }); }} entry={{ table: "mentors", id: m.id, createdBy: m.created_by }} className="ml-auto self-start" />
             </div>
             <div className="mb-4 mt-4 flex flex-wrap gap-1.5">{m.topics.map((t) => <span key={t} className="rounded-md bg-secondary/60 px-2.5 py-1 text-xs text-secondary-foreground">{t}</span>)}</div>
             <div className="relative mt-auto border-t border-border pt-3">{m.linkedin_url ? <>
