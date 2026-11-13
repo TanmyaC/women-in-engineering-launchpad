@@ -4,7 +4,7 @@ import { useState } from "react";
 import { z } from "zod";
 import { PageHeader, cardClass } from "@/components/SiteShell";
 import { supabase } from "@/integrations/supabase/client";
-import { Check, Copy } from "lucide-react";
+import { Check, Copy, UserPlus } from "lucide-react";
 import linkedinLogo from "@/assets/linkedin-logo.png.asset.json";
 import { Button } from "@/components/ui/button";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
@@ -76,7 +76,7 @@ function Mentorship() {
       <section className="mx-auto max-w-6xl px-6 pb-8">
         {done && <p className="mb-4 rounded-lg bg-secondary px-4 py-3 text-secondary-foreground">Thank you! You're now listed as a mentor.</p>}
         {!open ? (
-          <Button variant="outline" onClick={() => { setOpen(true); setDone(false); }} className="h-auto rounded-full border-forest px-6 py-3 text-forest hover:bg-secondary">+ Add yourself as a mentor</Button>
+          <Button size="lg" onClick={() => { setOpen(true); setDone(false); }} className="h-12 w-full rounded-lg px-6 text-base font-semibold shadow-soft sm:w-auto"><UserPlus aria-hidden="true" />Add yourself as a mentor</Button>
         ) : (
           <form onSubmit={submit} className={`${cardClass} grid gap-4 md:grid-cols-2`}>
             <h2 className="text-2xl font-bold text-forest md:col-span-2">Become a mentor</h2>
