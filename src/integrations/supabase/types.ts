@@ -145,7 +145,7 @@ export type Database = {
           topics: string[]
         }
         Insert: {
-          booking_url: string
+          booking_url?: string
           created_at?: string
           id?: string
           linkedin_url?: string | null

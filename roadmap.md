@@ -1,0 +1,2 @@
+- [x] Replace mentor booking links with LinkedIn contact.
+- [x] Fix mentor profile saving after removing the booking link requirement; verified saving and refreshing.

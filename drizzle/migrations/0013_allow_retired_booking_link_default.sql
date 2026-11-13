@@ -1,0 +1,2 @@
+ALTER TABLE public.mentors DROP CONSTRAINT mentors_booking_url_check;
+ALTER TABLE public.mentors ADD CONSTRAINT mentors_booking_url_check CHECK (booking_url = '' OR (booking_url ~ '^https://' AND char_length(booking_url) <= 300));
