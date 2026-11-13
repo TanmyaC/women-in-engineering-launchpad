@@ -122,9 +122,7 @@ export const interviewPrep = {
   generic: ["Prepare 6–8 STAR stories covering conflict, failure, leadership and impact", "Research the company's product, values and recent news", "Have 3 thoughtful questions ready for every interviewer", "Practice out loud — ideally with a peer from the group"],
   functions: [
     { name: "Software engineering", items: ["Data structures & algorithms practice", "System design fundamentals", "Code review & debugging rounds"] },
-    { name: "Engineering management", items: ["People management scenarios", "Delivery & prioritisation stories", "Org design and hiring"] },
     { name: "Product / technical PM", items: ["Product sense cases", "Metrics and trade-off questions", "Working with engineering"] },
-    { name: "Data & ML", items: ["SQL and statistics", "ML system design", "Experiment design"] },
   ],
 };
 
