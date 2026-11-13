@@ -41,12 +41,33 @@ export type Database = {
         }
         Relationships: []
       }
+      topics: {
+        Row: {
+          created_at: string
+          id: string
+          title: string
+          votes: number
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          title: string
+          votes?: number
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          title?: string
+          votes?: number
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      upvote_topic: { Args: { _id: string }; Returns: number }
     }
     Enums: {
       [_ in never]: never
