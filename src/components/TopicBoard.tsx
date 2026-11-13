@@ -77,8 +77,8 @@ export function TopicBoard() {
           <span className="inline-flex items-center gap-2 rounded-full bg-forest-foreground/10 px-3 py-1 text-xs font-semibold uppercase tracking-widest">
             <span className="h-2 w-2 animate-pulse rounded-full bg-accent" /> Live · You decide
           </span>
-          <h2 className="mt-4 text-4xl font-bold md:text-5xl">What should our next session be about?</h2>
-          <p className="mt-4 opacity-80">Pitch a topic or upvote the ones you'd love to see. The most wanted ideas become our next sessions.</p>
+          <h2 className="mt-4 text-4xl font-bold md:text-5xl">What is on top<br />of your mind <br />lately?</h2>
+          <p className="mt-4 opacity-80">Pitch a topic or upvote the ones you'd love to see. The most wanted ideas become our next discussion.</p>
           <div className="mt-6 flex gap-6">
             <div><p className="font-display text-3xl font-bold text-accent">{topics.length}</p><p className="text-sm opacity-70">ideas</p></div>
             <div><p className="font-display text-3xl font-bold text-accent">{totalVotes}</p><p className="text-sm opacity-70">votes cast</p></div>
