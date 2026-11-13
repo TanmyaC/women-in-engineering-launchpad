@@ -45,17 +45,16 @@ export function TargetCompanies() {
 
   return (
     <section className="mx-auto max-w-6xl px-6 pb-16">
-      <div className="flex flex-wrap items-end justify-between gap-4">
-        <button type="button" onClick={() => setExpanded((x) => !x)} aria-expanded={expanded} className="group flex items-center gap-4 text-left">
-          <span className={`inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full border-2 border-primary bg-primary/10 text-primary shadow-sm transition-all duration-300 group-hover:bg-primary group-hover:text-primary-foreground ${expanded ? "rotate-180" : ""}`} aria-hidden><ChevronDown size={22} strokeWidth={2.5} /></span>
+      <div className="rounded-3xl border border-border bg-card p-6 shadow-sm md:p-10">
+        <button type="button" onClick={() => setExpanded((x) => !x)} aria-expanded={expanded} className="group flex w-full items-center justify-between gap-4 text-left">
           <div>
           <h2 className="text-3xl font-bold text-forest">Companies we're targeting</h2>
           <p className="mt-1 text-muted-foreground">Share where you're applying — find others aiming for the same place.</p>
           </div>
+          <span className={`inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full border-2 border-primary bg-primary/10 text-primary shadow-sm transition-all duration-300 group-hover:bg-primary group-hover:text-primary-foreground ${expanded ? "rotate-180" : ""}`} aria-hidden><ChevronDown size={22} strokeWidth={2.5} /></span>
         </button>
-        {expanded && !open && <button onClick={() => setOpen(true)} className="rounded-full border border-forest px-6 py-3 font-medium text-forest transition hover:bg-secondary">+ Add a company</button>}
-      </div>
       {expanded && (<>
+      {!open && <div className="mt-6"><button onClick={() => setOpen(true)} className="rounded-full border border-forest px-6 py-3 font-medium text-forest transition hover:bg-secondary">+ Add a company</button></div>}
       {open && (
         <form onSubmit={submit} className={`${cardClass} mt-6 grid gap-4`}>
           <label className="grid gap-1 text-sm font-medium">Company name<input name="name" placeholder="e.g. Adyen" className={input} maxLength={100} /></label>
@@ -80,6 +79,7 @@ export function TargetCompanies() {
         ))}
       </div>
       </>)}
+      </div>
     </section>
   );
 }
