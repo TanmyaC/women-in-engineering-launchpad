@@ -7,6 +7,7 @@ import { supabase } from "@/integrations/supabase/client";
 const schema = z.object({
   title: z.string().trim().min(1, "Please add a name for the tool").max(100),
   description: z.string().trim().min(1, "Please add a short description").max(600),
+  url: z.union([z.literal(""), z.string().trim().max(300).url("Please paste a full link").startsWith("https://", "Link must start with https://")]).transform((v) => v || null),
 });
 const input = "w-full rounded-lg border border-input bg-background px-3 py-2 font-normal outline-none focus:ring-2 focus:ring-ring";
 
@@ -34,7 +35,7 @@ export function JobTools() {
   function submit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const f = new FormData(e.currentTarget);
-    const parsed = schema.safeParse({ title: f.get("title"), description: f.get("description") });
+    const parsed = schema.safeParse({ title: f.get("title"), description: f.get("description"), url: String(f.get("url") ?? "").trim() });
     if (!parsed.success) return setError(parsed.error.issues[0]?.message ?? "Please check the form");
     setError(null);
     add.mutate(parsed.data);
@@ -53,6 +54,7 @@ export function JobTools() {
         <form onSubmit={submit} className={`${cardClass} mt-6 grid gap-4`}>
           <label className="grid gap-1 text-sm font-medium">Tool name<input name="title" placeholder="e.g. Teal resume builder" className={input} maxLength={100} /></label>
           <label className="grid gap-1 text-sm font-medium">Description<textarea name="description" rows={3} placeholder="What is it and how did it help you?" className={input} maxLength={600} /></label>
+          <label className="grid gap-1 text-sm font-medium">Link <span className="text-xs font-normal text-muted-foreground">GitHub, website or doc (optional)</span><input name="url" placeholder="https://github.com/…" className={input} maxLength={300} /></label>
           {error && <p className="text-sm text-destructive">{error}</p>}
           <div className="flex gap-3">
             <button disabled={add.isPending} className="rounded-full bg-primary px-6 py-2.5 font-medium text-primary-foreground transition hover:opacity-90 disabled:opacity-60">{add.isPending ? "Saving…" : "Add tool"}</button>
@@ -67,6 +69,7 @@ export function JobTools() {
           <div key={t.id} className={cardClass}>
             <h3 className="text-xl font-bold text-forest">{t.title}</h3>
             <p className="mt-2 whitespace-pre-line text-muted-foreground">{t.description}</p>
+            {t.url && <a href={t.url} target="_blank" rel="noopener noreferrer" className="mt-3 inline-block font-medium text-primary underline-offset-4 hover:underline">Open link ↗</a>}
           </div>
         ))}
       </div>
