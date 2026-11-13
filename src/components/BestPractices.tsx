@@ -71,7 +71,7 @@ export function BestPractices() {
         {!isLoading && tools.length === 0 && <p className="text-muted-foreground">No best practices yet — share the first one!</p>}
         {tools.map((t) => (
           <div key={t.id} className={cardClass}>
-            <div className="flex items-start justify-between gap-3"><h3 className="text-xl font-bold text-forest">{t.title}</h3><AuthorBadge initials={t.author_initials} entry={{ table: "best_practices", id: t.id, createdBy: t.created_by }} /></div>
+            <div className="flex items-start justify-between gap-3"><h3 className="text-xl font-bold text-forest">{t.title}</h3><AuthorBadge initials={t.author_initials} name={t.author_name} entry={{ table: "best_practices", id: t.id, createdBy: t.created_by }} /></div>
             <p className="mt-2 whitespace-pre-line text-muted-foreground">{t.description}</p>
           </div>
         ))}
