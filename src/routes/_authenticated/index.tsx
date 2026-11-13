@@ -61,6 +61,29 @@ function Index() {
         <TopicBoard />
       </section>
 
+      <section aria-labelledby="explore-heading" className="mx-auto max-w-6xl px-6 pb-12">
+        <p className="flex items-center gap-3 text-sm font-semibold uppercase tracking-widest text-primary"><span aria-hidden="true" className="h-px w-8 bg-primary" />Explore the hub</p>
+        <h2 id="explore-heading" className="mt-3 text-3xl font-bold text-forest md:text-4xl">Shared knowledge. New possibilities.</h2>
+        <p className="mt-3 text-muted-foreground">What we learn and share, all in one place.</p>
+        <ul className="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-5">
+          {explore.map(({ to, icon: Icon, title, text }) => (
+            <li key={to} className="border-t border-sage/30 pt-4">
+              <Button asChild variant="link" className="h-auto w-full items-start justify-start whitespace-normal rounded-sm p-0 text-left text-forest hover:no-underline">
+                <Link to={to} className="group">
+                  <Icon aria-hidden="true" className="mt-1 shrink-0 text-primary" strokeWidth={1.5} />
+                  <span className="min-w-0 flex-1">
+                    <span className="flex items-start gap-1 font-display text-lg font-bold">
+                      {title}<ArrowUpRight aria-hidden="true" className="mt-1 shrink-0 text-primary motion-safe:transition-transform motion-safe:group-hover:-translate-y-0.5 motion-safe:group-hover:translate-x-0.5" />
+                    </span>
+                    <span className="mt-1 block text-sm font-normal text-muted-foreground">{text}</span>
+                  </span>
+                </Link>
+              </Button>
+            </li>
+          ))}
+        </ul>
+      </section>
+
       <section aria-labelledby="mission-heading" className="mx-auto max-w-6xl px-6 pb-12">
         <div>
           <div>
