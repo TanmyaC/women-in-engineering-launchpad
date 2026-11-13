@@ -16,10 +16,19 @@ const explore = [
   { to: "/resources", title: "Useful resources", text: "Links our members swear by.", emoji: "📚" },
 ] as const;
 
-const values = [
-  { title: "Learn out loud", text: "Share what you know, ask what you don't." },
-  { title: "Lift as we climb", text: "Every member is someone's mentor." },
-  { title: "Show up", text: "Sessions shaped by the community, for the community." },
+const why = [
+  { emoji: "🌱", title: "Grow your skills", text: "Learn about opportunities for professional development and skill-building." },
+  { emoji: "💬", title: "Share the real stuff", text: "Swap experiences and advice on navigating the workplace." },
+  { emoji: "💪", title: "Beat imposter syndrome", text: "Support each other through self-doubt and work-life balance." },
+  { emoji: "🤝", title: "Mentor & be mentored", text: "Foster mentorship and peer support across Miro." },
+];
+
+const how = [
+  "Sessions on technical upskilling, career development and leadership",
+  "Opportunities to connect with peers and senior leaders",
+  "Safe spaces to share challenges, advice and resources",
+  "Insights from successful women in engineering",
+  "Driving positive change at work and advocating for each other",
 ];
 
 function Index() {
@@ -29,10 +38,10 @@ function Index() {
         <div>
           <p className="inline-flex items-center gap-2 rounded-full bg-secondary px-3 py-1 text-sm font-medium text-secondary-foreground">👋 Welcome to our community</p>
           <h1 className="mt-5 text-5xl font-bold leading-[1.05] text-forest md:text-6xl">
-            Where women in engineering <span className="bg-gradient-warm bg-clip-text text-transparent">grow together.</span>
+            A safe space to <span className="bg-gradient-warm bg-clip-text text-transparent">grow, lead and lift each other.</span>
           </h1>
           <p className="mt-6 max-w-xl text-lg text-muted-foreground">
-            Miro Women In Engineering is our space to connect, learn from each other and open doors — from your first interview to your next big role.
+            We're a community for women in engineering at Miro — not just engineers — building confidence, skills and careers together. From technical upskilling to beating imposter syndrome, nobody navigates it alone.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
             <a href="#topics" className="rounded-full bg-primary px-6 py-3 font-medium text-primary-foreground shadow-soft transition hover:scale-105">Vote on the next session</a>
@@ -66,15 +75,37 @@ function Index() {
         </div>
       </section>
 
+      <section className="mx-auto max-w-6xl px-6 pb-20">
+        <div className="grid gap-10 lg:grid-cols-[1fr_1.5fr]">
+          <div>
+            <p className="text-sm font-semibold uppercase tracking-widest text-primary">Our mission</p>
+            <h2 className="mt-3 text-3xl font-bold text-forest md:text-4xl">Fostering the growth, confidence and success of women in engineering.</h2>
+            <p className="mt-4 text-muted-foreground">Women in engineering are often underrepresented in leadership, wrestle with self-doubt and struggle to find the right growth opportunities. There wasn't a single place to connect — so we built one.</p>
+          </div>
+          <div className="grid gap-4 sm:grid-cols-2">
+            {why.map((w) => (
+              <div key={w.title} className={`${cardClass} group transition hover:-translate-y-1 hover:border-primary`}>
+                <span className="inline-block text-3xl transition group-hover:scale-125">{w.emoji}</span>
+                <h3 className="mt-3 text-lg font-bold text-forest">{w.title}</h3>
+                <p className="mt-1 text-sm text-muted-foreground">{w.text}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       <section className="mx-auto max-w-6xl px-6 pb-24">
-        <div className="grid gap-5 rounded-[calc(var(--radius)+12px)] bg-secondary p-8 md:grid-cols-3 md:p-12">
-          {values.map((v, i) => (
-            <div key={v.title}>
-              <p className="font-display text-5xl font-bold text-primary">0{i + 1}</p>
-              <h3 className="mt-2 text-xl font-bold text-secondary-foreground">{v.title}</h3>
-              <p className="mt-1 text-secondary-foreground/80">{v.text}</p>
-            </div>
-          ))}
+        <div className="rounded-[calc(var(--radius)+12px)] bg-secondary p-8 md:p-12">
+          <p className="text-sm font-semibold uppercase tracking-widest text-primary">How we do it</p>
+          <h2 className="mt-2 text-3xl font-bold text-secondary-foreground">Together, we…</h2>
+          <ol className="mt-8 grid gap-6 md:grid-cols-5">
+            {how.map((h, i) => (
+              <li key={h}>
+                <p className="font-display text-4xl font-bold text-primary">0{i + 1}</p>
+                <p className="mt-2 text-secondary-foreground">{h}</p>
+              </li>
+            ))}
+          </ol>
         </div>
       </section>
     </>
