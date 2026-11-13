@@ -11,7 +11,7 @@ export function PdfViewer({ url }: { url: string }) {
         const pdfjs = await import("pdfjs-dist");
         const worker = await import("pdfjs-dist/build/pdf.worker.min.mjs?url");
         pdfjs.GlobalWorkerOptions.workerSrc = worker.default;
-        const pdf = await pdfjs.getDocument(url).promise;
+        const pdf = await pdfjs.getDocument({ url: new URL(url, window.location.href).href }).promise;
         const box = ref.current;
         if (!box || cancelled) return;
         box.innerHTML = "";
