@@ -1,4 +1,4 @@
-export function AuthorBadge({ initials, className = "" }: { initials?: string | null; className?: string }) {
+export function AuthorBadge({ initials, className = "" }: { initials?: string | null | undefined; className?: string }) {
   if (!initials) return null;
   return (
     <span
