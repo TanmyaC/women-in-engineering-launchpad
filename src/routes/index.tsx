@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { cardClass } from "@/components/SiteShell";
 import { TopicBoard } from "@/components/TopicBoard";
+import { Button } from "@/components/ui/button";
 import hero from "@/assets/hero-idea-wall.jpg";
 
 export const Route = createFileRoute("/")({
@@ -44,7 +45,9 @@ function Index() {
             We're a community for women in engineering at Miro — not just engineers — building confidence, skills and careers together. From technical upskilling to beating imposter syndrome, nobody navigates it alone.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
-            <a href="#topics" className="rounded-full bg-primary px-6 py-3 font-medium text-primary-foreground shadow-soft transition hover:scale-105">Vote on the next session</a>
+            <Button asChild className="h-auto rounded-full px-6 py-3 text-base shadow-soft transition hover:scale-105">
+              <a href="https://www.linkedin.com/groups/42842291/" target="_blank" rel="noopener noreferrer">Join our LinkedIn group</a>
+            </Button>
             <Link to="/mentorship" className="rounded-full border border-forest px-6 py-3 font-medium text-forest transition hover:bg-secondary">Find a mentor</Link>
           </div>
         </div>
