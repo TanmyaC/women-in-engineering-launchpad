@@ -1,7 +1,8 @@
 import { Link, useNavigate } from "@tanstack/react-router";
 import { useEffect, useState, type ReactNode } from "react";
 import { useQueryClient } from "@tanstack/react-query";
-import { Lightbulb, LogOut } from "lucide-react";
+import { ChevronDown, Lightbulb, LogOut } from "lucide-react";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
@@ -62,10 +63,18 @@ export function SiteShell({ children }: { children: ReactNode }) {
                 <TooltipContent>Ideas &amp; feedback</TooltipContent>
               </Tooltip>
             </TooltipProvider>
-            <span className="ml-2 hidden text-muted-foreground lg:inline">{name.split(" ")[0]}</span>
-            <Button variant="ghost" size="sm" onClick={signOut} className="rounded-full">
-              <LogOut aria-hidden="true" /> Sign out
-            </Button>
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant="ghost" size="sm" className="ml-1 rounded-full">
+                  {name.split(" ")[0]} <ChevronDown aria-hidden="true" />
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end">
+                <DropdownMenuItem onSelect={signOut}>
+                  <LogOut aria-hidden="true" /> Sign out
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
           </nav>}
         </div>
       </header>
