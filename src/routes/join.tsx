@@ -4,7 +4,7 @@ import { AuthCard } from "./auth";
 import { INVITE_STORAGE_KEY, normalizeInviteCode } from "@/lib/invite";
 
 export const Route = createFileRoute("/join")({
-  validateSearch: (s: Record<string, unknown>): { code?: string } => ({ code: typeof s["code"] === "string" ? s["code"] : undefined }),
+  validateSearch: (s: Record<string, unknown>): { code?: string | undefined } => ({ code: typeof s["code"] === "string" ? s["code"] : undefined }),
   head: () => ({
     meta: [
       { title: "Join · Miro Women In Engineering" },
