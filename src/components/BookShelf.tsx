@@ -1,6 +1,7 @@
 import { AuthorBadge } from "@/components/AuthorBadge";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { BookOpen } from "lucide-react";
+import { BookVote, useBookVotes } from "@/components/BookVote";
 import { useState } from "react";
 import { z } from "zod";
 import { cardClass } from "@/components/SiteShell";
@@ -21,6 +22,7 @@ export function BookShelf() {
   const qc = useQueryClient();
   const [open, setOpen] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const { data: votes = [] } = useBookVotes();
   const { data: books = [], isLoading } = useQuery({
     queryKey: ["books"],
     queryFn: async () => {
@@ -78,6 +80,7 @@ export function BookShelf() {
               <h3 className="text-lg font-bold text-forest">{b.title}</h3>
               <p className="mt-2 whitespace-pre-line text-sm text-muted-foreground">{b.why}</p>
             </div>
+            <div className="mt-auto px-5 pb-5"><BookVote bookId={b.id} votes={votes.filter((v) => v.book_id === b.id)} /></div>
           </div>
         ))}
       </div>
