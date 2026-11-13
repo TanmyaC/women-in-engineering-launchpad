@@ -34,3 +34,4 @@ use the editor.
 - Shared header/footer live in `src/components/SiteShell.tsx`, rendered from `__root.tsx`.
 - Community-contributed engineering resources and one-line tips are stored in Cloud by topic and rendered through shared forms so contributions persist and stay separated by interview type.
 - Mentor form validation lives in a shared schema with focused tests so optional profile links are validated before saving to Cloud.
+- All content routes live under `src/routes/_authenticated/` (Google sign-in + membership check via `is_member`); new members join only via `/join?code=...`, redeemed by the `redeem_invite` RPC, so community tables are readable/writable only by members.
