@@ -5,7 +5,7 @@ import { BestPractices } from "@/components/BestPractices";
 import { AiJobJourney } from "@/components/AiJobJourney";
 import { TargetCompanies } from "@/components/TargetCompanies";
 
-export const Route = createFileRoute("/jobs")({
+export const Route = createFileRoute("/_authenticated/jobs")({
   head: () => ({ meta: [{ title: "Finding a job — Miro Women In Engineering" }, { name: "description", content: "Job search guidance: an AI-powered job search roadmap and tools recommended by our community." }, { property: "og:title", content: "Finding a job — Miro Women In Engineering" }, { property: "og:description", content: "Job search guidance: an AI-powered job search roadmap and tools recommended by our community." }, { property: "og:type", content: "website" }, { name: "twitter:card", content: "summary_large_image" }] }),
   component: Jobs,
 });

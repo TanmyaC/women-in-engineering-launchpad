@@ -6,7 +6,7 @@ import { sessions } from "@/data/content";
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import { PdfViewer } from "@/components/PdfViewer";
 
-export const Route = createFileRoute("/sessions/")({
+export const Route = createFileRoute("/_authenticated/sessions/")({
   head: () => ({ meta: [{ title: "Session notes — Miro Women In Engineering" }, { name: "description", content: "Notes from Miro Women In Engineering sessions, ready to preview or download." }, { property: "og:title", content: "Session notes — Miro Women In Engineering" }, { property: "og:description", content: "Notes from Miro Women In Engineering sessions, ready to preview or download." }, { property: "og:type", content: "website" }, { name: "twitter:card", content: "summary_large_image" }] }),
   component: Sessions,
 });

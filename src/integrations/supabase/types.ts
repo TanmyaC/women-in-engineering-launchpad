@@ -110,6 +110,24 @@ export type Database = {
         }
         Relationships: []
       }
+      invite_settings: {
+        Row: {
+          code: string
+          id: number
+          updated_at: string
+        }
+        Insert: {
+          code: string
+          id?: number
+          updated_at?: string
+        }
+        Update: {
+          code?: string
+          id?: number
+          updated_at?: string
+        }
+        Relationships: []
+      }
       job_tools: {
         Row: {
           created_at: string
@@ -131,6 +149,21 @@ export type Database = {
           id?: string
           title?: string
           url?: string | null
+        }
+        Relationships: []
+      }
+      members: {
+        Row: {
+          joined_at: string
+          user_id: string
+        }
+        Insert: {
+          joined_at?: string
+          user_id: string
+        }
+        Update: {
+          joined_at?: string
+          user_id?: string
         }
         Relationships: []
       }
@@ -214,6 +247,8 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      is_member: { Args: { _user_id: string }; Returns: boolean }
+      redeem_invite: { Args: { _code: string }; Returns: boolean }
       upvote_topic: { Args: { _id: string }; Returns: number }
     }
     Enums: {

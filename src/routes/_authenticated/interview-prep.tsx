@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { EngineeringResources } from "@/components/EngineeringResources";
 import { interviewPrep } from "@/data/content";
 
-export const Route = createFileRoute("/interview-prep")({
+export const Route = createFileRoute("/_authenticated/interview-prep")({
   head: () => ({ meta: [{ title: "Interview prep — Miro Women In Engineering" }, { name: "description", content: "General interview tips and role-specific guides for engineering, management, product and data." }, { property: "og:title", content: "Interview prep — Miro Women In Engineering" }, { property: "og:description", content: "General interview tips and role-specific guides for engineering, management, product and data." }, { property: "og:type", content: "website" }, { name: "twitter:card", content: "summary_large_image" }] }),
   component: Prep,
 });
