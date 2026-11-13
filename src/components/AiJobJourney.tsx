@@ -5,6 +5,7 @@ export function AiJobJourney() {
   const ref = useRef<HTMLElement>(null);
   const [seen, setSeen] = useState(false);
   const [active, setActive] = useState(0);
+  const [open, setOpen] = useState(false);
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
@@ -17,6 +18,7 @@ export function AiJobJourney() {
     const t = setInterval(() => setActive((a) => (a + 1) % j.stages.length), 2600);
     return () => clearInterval(t);
   }, [seen]);
+  // seen only matters once opened
 
   const reveal = (delay: number) => ({
     className: `transition-all duration-700 ease-out ${seen ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`,
@@ -26,11 +28,16 @@ export function AiJobJourney() {
   return (
     <section ref={ref} className="mx-auto max-w-6xl px-6 pb-16">
       <div className="rounded-3xl bg-forest p-6 text-forest-foreground md:p-10">
+        <button type="button" onClick={() => setOpen((o) => !o)} aria-expanded={open} className="flex w-full items-start justify-between gap-4 text-left">
         <div {...reveal(0)}>
           <p className="text-sm font-semibold uppercase tracking-widest opacity-80">Your roadmap</p>
           <h2 className="mt-2 text-3xl font-bold md:text-4xl">{j.title}</h2>
           <p className="mt-2 text-lg opacity-90">{j.tagline}</p>
         </div>
+          <span className={`mt-2 inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-forest-foreground/15 text-xl transition-transform duration-300 ${open ? "rotate-180" : ""}`} aria-hidden>⌄</span>
+        </button>
+        <div className={`grid transition-all duration-500 ease-out ${open ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"}`}>
+        <div className="overflow-hidden">
 
         <div className="relative mt-8 hidden h-1 rounded-full bg-forest-foreground/20 lg:block">
           <div className="absolute inset-y-0 left-0 rounded-full bg-accent transition-all duration-700" style={{ width: seen ? `${((active + 1) / j.stages.length) * 100}%` : "0%" }} />
@@ -67,6 +74,8 @@ export function AiJobJourney() {
               <div key={g} className="rounded-xl border border-accent/60 bg-accent/15 px-4 py-3 text-sm font-medium transition hover:-translate-y-1 hover:bg-accent hover:text-accent-foreground">{g}</div>
             ))}
           </div>
+        </div>
+        </div>
         </div>
       </div>
     </section>
