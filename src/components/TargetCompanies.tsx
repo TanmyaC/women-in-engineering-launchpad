@@ -1,5 +1,6 @@
 import { AuthorBadge } from "@/components/AuthorBadge";
 import { ChevronDown } from "lucide-react";
+import { CompanyContacts, useCompanyContacts } from "@/components/CompanyContacts";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
 import { z } from "zod";
@@ -26,6 +27,7 @@ export function TargetCompanies() {
       return data;
     },
   });
+  const { data: contacts = [] } = useCompanyContacts();
   const add = useMutation({
     mutationFn: async (c: z.infer<typeof schema>) => {
       const { error } = await supabase.from("target_companies").insert(c);
@@ -76,6 +78,7 @@ export function TargetCompanies() {
             <div className="flex items-start justify-between gap-3"><h3 className="text-xl font-bold text-forest">🏢 {c.name}</h3><AuthorBadge initials={c.author_initials} entry={{ table: "target_companies", id: c.id, createdBy: c.created_by }} /></div>
             {c.note && <p className="mt-2 whitespace-pre-line text-muted-foreground">{c.note}</p>}
             {c.url && <a href={c.url} target="_blank" rel="noopener noreferrer" className="mt-3 inline-block font-medium text-primary underline-offset-4 hover:underline">Careers page ↗</a>}
+            <CompanyContacts companyId={c.id} contacts={contacts.filter((x) => x.company_id === c.id)} />
           </div>
         ))}
       </div>
