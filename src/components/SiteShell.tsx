@@ -31,12 +31,12 @@ export function SiteShell({ children }: { children: ReactNode }) {
               <Tooltip>
                 <TooltipTrigger asChild>
                   <Button asChild variant="secondary" size="icon" className="shrink-0 rounded-full text-primary">
-                    <a href="https://www.linkedin.com/groups/42842291/" target="_blank" rel="noopener noreferrer" aria-label="Share ideas or feedback on LinkedIn">
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSemU_A6jIU7JbiDUu3o528JvqAoP6JoWZpaRZ-4GyziINtKqA/viewform?usp=publish-editor" target="_blank" rel="noopener noreferrer" aria-label="Share ideas or feedback">
                       <Lightbulb aria-hidden="true" />
                     </a>
                   </Button>
                 </TooltipTrigger>
-                <TooltipContent>Ideas &amp; feedback · LinkedIn group</TooltipContent>
+                <TooltipContent>Ideas &amp; feedback</TooltipContent>
               </Tooltip>
             </TooltipProvider>
           </nav>
