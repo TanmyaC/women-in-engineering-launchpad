@@ -48,7 +48,7 @@ function Mentorship() {
       name: f.get("name"), role: f.get("role"), booking_url: f.get("booking_url"),
       topics: String(f.get("topics") ?? "").split(",").map((t) => t.trim()).filter(Boolean),
     });
-    if (!parsed.success) return setError(parsed.error.issues[0].message);
+    if (!parsed.success) return setError(parsed.error.issues[0]?.message ?? "Please check the form");
     setError(null);
     add.mutate(parsed.data);
   }
