@@ -51,7 +51,7 @@ function EngineeringTopic({ topic }: { topic: typeof interviewPrep.functions[num
         <h3 className={`rounded-md px-3 py-2 text-lg font-semibold ${topic.tone}`}>{topic.name}</h3>
         <ChevronDown aria-hidden className={`shrink-0 text-primary transition-transform motion-reduce:transition-none ${open ? "rotate-180" : ""}`} />
       </Button>
-      {open && <EngineeringResources topic={topic.name} />}
+      {open && <><p className="mt-4 font-medium text-foreground">🎯 {topic.goal}</p><EngineeringResources topic={topic.name} /></>}
     </div>
   );
 }
@@ -63,7 +63,7 @@ function Prep() {
       <section className="mx-auto grid max-w-6xl gap-5 px-6 pb-20">
         <Section title="Recruiter interview" items={[]} mark="" groups={RECRUITER} goal="Goal: be clear on why you, why this role, and what you need." />
         <Section title="Hiring manager & behavioral interview" items={[]} mark="" groups={HIRING} notes="Navigating Behavioral & Hiring Manager Interviews" goal="Goal: show you can do the job, work well with people, and prove it with real stories." />
-        {interviewPrep.functions.map((f) => <Section key={f.name} title={f.name} items={[]} mark="—" topics={f.topics} />)}
+        {interviewPrep.functions.map((f) => <Section key={f.name} title={f.name} items={[]} mark="—" topics={f.topics} notes={f.notes} />)}
       </section>
     </>
   );
