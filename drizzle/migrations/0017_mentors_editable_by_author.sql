@@ -1,0 +1,2 @@
+GRANT UPDATE ON public.mentors TO authenticated;
+CREATE POLICY "Authors can update own mentor card" ON public.mentors FOR UPDATE TO authenticated USING (created_by = auth.uid()) WITH CHECK (created_by = auth.uid());
