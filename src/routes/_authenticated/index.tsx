@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { cardClass } from "@/components/SiteShell";
 import { TopicBoard } from "@/components/TopicBoard";
 import { Button } from "@/components/ui/button";
+import { Code2, MessagesSquare, Compass, Mic2, Sprout } from "lucide-react";
 import hero from "@/assets/hero-idea-wall.jpg";
 
 export const Route = createFileRoute("/_authenticated/")({
@@ -25,11 +26,11 @@ const why = [
 ];
 
 const how = [
-  "Sessions on technical upskilling, career development and leadership",
-  "Opportunities to connect with peers and senior leaders",
-  "Safe spaces to share challenges, advice and resources",
-  "Insights from successful women in engineering",
-  "Driving positive change at work and advocating for each other",
+  { icon: Code2, title: "Build technical confidence", text: "From system design to AI-assisted coding, we learn together and make room for questions you might hesitate to ask at work." },
+  { icon: Compass, title: "Make the next move less lonely", text: "Connect with peers and senior leaders for honest conversations about interviews, career pivots and stepping into leadership." },
+  { icon: MessagesSquare, title: "Talk about the unspoken", text: "A safe space for self-doubt, workplace challenges and work-life balance — with shared experience, not judgment." },
+  { icon: Mic2, title: "Learn from women who've been there", text: "Go beyond the polished career story. Share the decisions, setbacks and lessons behind a woman’s path in engineering." },
+  { icon: Sprout, title: "Turn support into advocacy", text: "Celebrate each other’s work, share opportunities and speak up for one another. Progress is something we build together." },
 ];
 
 function Index() {
@@ -97,15 +98,23 @@ function Index() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-6xl px-6 pb-24">
-        <div className="rounded-[calc(var(--radius)+12px)] bg-secondary p-8 md:p-12">
-          <p className="text-sm font-semibold uppercase tracking-widest text-primary">How we do it</p>
-          <h2 className="mt-2 text-3xl font-bold text-secondary-foreground">Together, we…</h2>
-          <ol className="mt-8 grid gap-6 md:grid-cols-5">
-            {how.map((h, i) => (
-              <li key={h}>
-                <p className="font-display text-4xl font-bold text-primary">0{i + 1}</p>
-                <p className="mt-2 text-secondary-foreground">{h}</p>
+      <section aria-labelledby="how-heading" className="border-y border-sage/25 bg-secondary/40">
+        <div className="mx-auto grid max-w-6xl gap-10 px-6 py-16 md:py-20 lg:grid-cols-[0.85fr_1.4fr] lg:gap-20">
+          <div>
+            <p className="flex items-center gap-3 text-sm font-semibold text-primary"><span aria-hidden="true" className="h-px w-8 bg-primary" />How we do it</p>
+            <h2 id="how-heading" className="mt-5 max-w-sm text-3xl font-bold leading-tight tracking-normal text-forest md:text-4xl">Growth isn’t a solo project.</h2>
+            <p className="mt-5 max-w-sm leading-relaxed text-muted-foreground">For women in engineering at Miro, connection is more than networking. It’s a place to ask the hard questions, find your voice and help someone else find theirs.</p>
+            <p className="mt-8 border-l-2 border-primary pl-4 text-sm font-medium text-forest">Different roles. Shared experiences.<br />A stronger community.</p>
+          </div>
+          <ol className="divide-y divide-sage/30 border-y border-sage/30">
+            {how.map(({ icon: Icon, title, text }, i) => (
+              <li key={title} className="group grid grid-cols-[2.5rem_1fr] gap-4 py-6 first:pt-6 motion-safe:transition-transform motion-safe:duration-200 motion-safe:hover:translate-x-1 sm:grid-cols-[2.5rem_1fr_2rem]">
+                <span aria-hidden="true" className="pt-1 font-display text-sm font-medium tabular-nums text-primary">0{i + 1}</span>
+                <div>
+                  <h3 className="text-lg font-semibold tracking-normal text-forest">{title}</h3>
+                  <p className="mt-2 max-w-lg text-sm leading-relaxed text-muted-foreground">{text}</p>
+                </div>
+                <Icon aria-hidden="true" className={`mt-1 hidden size-5 sm:block ${i % 2 === 0 ? "text-primary" : "text-forest"}`} strokeWidth={1.5} />
               </li>
             ))}
           </ol>
