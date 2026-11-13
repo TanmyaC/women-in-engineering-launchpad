@@ -117,11 +117,6 @@ export const sessions: Session[] = [
   },
 ];
 
-export const jobTopics = [
-  { title: "Where to look", items: ["Company career pages and internal referrals", "LinkedIn job alerts with focused filters", "Women-in-tech job boards and community Slack channels"] },
-  { title: "CV & LinkedIn", items: ["Lead with impact: numbers, scope, outcomes", "Tailor the top third of your CV to each role", "Keep your LinkedIn headline specific to the role you want"] },
-  { title: "Negotiation", items: ["Research salary bands before the first call", "Negotiate the full package, not just base", "It's normal to ask for time to decide"] },
-];
 
 export const interviewPrep = {
   generic: ["Prepare 6–8 STAR stories covering conflict, failure, leadership and impact", "Research the company's product, values and recent news", "Have 3 thoughtful questions ready for every interviewer", "Practice out loud — ideally with a peer from the group"],
