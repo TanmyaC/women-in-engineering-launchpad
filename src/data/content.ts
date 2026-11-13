@@ -139,3 +139,17 @@ export const resources = [
   { title: "AnitaB.org", url: "https://anitab.org/", category: "Community" },
   { title: "StaffEng — stories & guides", url: "https://staffeng.com/", category: "Career growth" },
 ];
+
+export const aiJobJourney = {
+  title: "Finding a job with AI",
+  tagline: "Let AI do the legwork; you own the judgment.",
+  stages: [
+    { name: "Know yourself", icon: "🪞", steps: ["Mine past work for skills & wins", "Map transferable skills to new job titles", "Draft a one-line pitch + target role list", "Skill-gap analysis → AI study plan"] },
+    { name: "Discover roles", icon: "🔭", steps: ["Smart alerts: LinkedIn, Indeed, Google Jobs", "Paste a posting: \"How well do I fit?\"", "Find hidden roles via company news & growth", "Track applications in an AI-updated sheet"] },
+    { name: "Tailor materials", icon: "✂️", steps: ["Tailor résumé bullets to each posting", "ATS check: résumé vs. job keywords", "Cover letter draft, then add your voice", "Refresh LinkedIn headline & About"], highlight: 0 },
+    { name: "Network", icon: "🤝", steps: ["Personal outreach notes to hiring managers", "Research people before coffee chats", "Referral request templates", "Follow-ups & thank-you drafts"] },
+    { name: "Interview prep", icon: "🎤", steps: ["Predict questions from the job post", "Voice mock interviews with feedback", "Turn wins into STAR stories", "Company dossier: product, news, culture"] },
+    { name: "Negotiate", icon: "💸", steps: ["Research pay bands (Levels.fyi, Glassdoor)", "Role-play the salary talk", "Compare offers on total comp", "Draft a counteroffer email"] },
+  ] as { name: string; icon: string; steps: string[]; highlight?: number }[],
+  guardrails: ["Fact-check: never claim skills you lack", "Edit every draft so it sounds like you", "Keep personal data out of unknown tools", "Watch for fake, AI-made job scams"],
+};
