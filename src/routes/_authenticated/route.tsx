@@ -7,9 +7,9 @@ export const Route = createFileRoute("/_authenticated")({
   beforeLoad: async () => {
     const { data } = await supabase.auth.getUser();
     if (!data.user) throw redirect({ to: "/auth" });
-    const pending = sessionStorage.getItem(INVITE_STORAGE_KEY);
+    const pending = localStorage.getItem(INVITE_STORAGE_KEY);
     if (pending) {
-      sessionStorage.removeItem(INVITE_STORAGE_KEY);
+      localStorage.removeItem(INVITE_STORAGE_KEY);
       await supabase.rpc("redeem_invite", { _code: pending });
     }
     const { data: member } = await supabase.rpc("is_member", { _user_id: data.user.id });
