@@ -89,6 +89,27 @@ export type Database = {
         }
         Relationships: []
       }
+      engineering_tips: {
+        Row: {
+          created_at: string
+          id: string
+          tip: string
+          topic: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          tip: string
+          topic: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          tip?: string
+          topic?: string
+        }
+        Relationships: []
+      }
       job_tools: {
         Row: {
           created_at: string

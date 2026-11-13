@@ -64,6 +64,13 @@
       "when": 1794603354585,
       "tag": "0008_create_engineering_resources",
       "breakpoints": true
+    },
+    {
+      "idx": 9,
+      "version": "7",
+      "when": 1794603537254,
+      "tag": "0009_create_engineering_tips",
+      "breakpoints": true
     }
   ]
 }
