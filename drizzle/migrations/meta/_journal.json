@@ -134,6 +134,13 @@
       "when": 1794608185849,
       "tag": "0018_lock_book_covers_storage",
       "breakpoints": true
+    },
+    {
+      "idx": 19,
+      "version": "7",
+      "when": 1794608891537,
+      "tag": "0019_admin_tools",
+      "breakpoints": true
     }
   ]
 }
