@@ -1,3 +1,4 @@
+import { AuthorBadge } from "@/components/AuthorBadge";
 import { ChevronDown } from "lucide-react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
@@ -72,7 +73,7 @@ export function JobTools() {
         {!isLoading && tools.length === 0 && <p className="text-muted-foreground">No tools yet — be the first to add one!</p>}
         {tools.map((t) => (
           <div key={t.id} className={cardClass}>
-            <h3 className="text-xl font-bold text-forest">{t.title}</h3>
+            <div className="flex items-start justify-between gap-3"><h3 className="text-xl font-bold text-forest">{t.title}</h3><AuthorBadge initials={t.author_initials} /></div>
             <p className="mt-2 whitespace-pre-line text-muted-foreground">{t.description}</p>
             {t.url && <a href={t.url} target="_blank" rel="noopener noreferrer" className="mt-3 inline-block font-medium text-primary underline-offset-4 hover:underline">Open link ↗</a>}
           </div>

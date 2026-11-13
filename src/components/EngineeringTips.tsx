@@ -1,3 +1,4 @@
+import { AuthorBadge } from "@/components/AuthorBadge";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { Lightbulb, Plus } from "lucide-react";
 import { useState } from "react";
@@ -43,6 +44,6 @@ export function EngineeringTips({ topic }: { topic: string }) {
     {tips.isPending && <p className="mt-3 text-sm text-muted-foreground">Loading tips…</p>}
     {tips.isError && <p role="alert" className="mt-3 text-sm text-destructive">Could not load tips. <Button variant="link" onClick={() => tips.refetch()}>Try again</Button></p>}
     {tips.isSuccess && tips.data.length === 0 && <p className="mt-3 text-sm text-muted-foreground">No tips added yet.</p>}
-    <ul className="mt-3 space-y-2">{tips.data?.map((tip) => <li key={tip.id} className="flex gap-3 py-2 text-foreground"><span aria-hidden className="text-primary">•</span><span className="min-w-0 break-words">{tip.tip}</span></li>)}</ul>
+    <ul className="mt-3 space-y-2">{tips.data?.map((tip) => <li key={tip.id} className="flex gap-3 py-2 text-foreground"><span aria-hidden className="text-primary">•</span><span className="min-w-0 flex-1 break-words">{tip.tip}</span><AuthorBadge initials={tip.author_initials} className="h-6 w-6 text-[10px]" /></li>)}</ul>
   </section>;
 }

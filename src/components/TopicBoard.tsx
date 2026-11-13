@@ -1,3 +1,4 @@
+import { AuthorBadge } from "@/components/AuthorBadge";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
 import { z } from "zod";
@@ -115,6 +116,7 @@ export function TopicBoard() {
                   <p className="truncate font-medium">{t.title}</p>
                   <p className="text-xs opacity-60">{i === 0 ? "🔥 Most wanted" : i < 3 ? "Trending" : has ? "You're in" : "Tap to upvote"}</p>
                 </div>
+                <AuthorBadge initials={t.author_initials} className="relative bg-forest-foreground/20 text-forest-foreground" />
                 <span className="relative font-display text-sm opacity-50">#{i + 1}</span>
               </li>
             );
