@@ -31,7 +31,7 @@ export function SiteShell({ children }: { children: ReactNode }) {
               <Tooltip>
                 <TooltipTrigger asChild>
                   <Button asChild variant="secondary" size="icon" className="shrink-0 rounded-full text-primary">
-                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSemU_A6jIU7JbiDUu3o528JvqAoP6JoWZpaRZ-4GyziINtKqA/viewform?usp=publish-editor" target="_blank" rel="noopener noreferrer" aria-label="Share ideas or feedback">
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSemU_A6jIU7JbiDUu3o528JvqAoP6JoWZpaRZ-4GyziINtKqA/viewform?usp=publish-editor" target="_blank" rel="noopener noreferrer" aria-label="Ideas & feedback">
                       <Lightbulb aria-hidden="true" />
                     </a>
                   </Button>
