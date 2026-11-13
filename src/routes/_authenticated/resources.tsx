@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { PageHeader, cardClass } from "@/components/SiteShell";
+import { cardClass } from "@/components/SiteShell";
 import { resources } from "@/data/content";
 import { BookShelf } from "@/components/BookShelf";
 import { PromptLibrary } from "@/components/PromptLibrary";
@@ -12,7 +12,11 @@ export const Route = createFileRoute("/_authenticated/resources")({
 function Resources() {
   return (
     <>
-      <PageHeader eyebrow="Useful resources" title="Links worth bookmarking" intro="Tools, guides and communities our members recommend." />
+      <section className="mx-auto max-w-6xl px-6 pb-8 pt-14">
+        <p className="text-sm font-semibold uppercase tracking-widest text-primary">Useful resources</p>
+        <h1 className="mt-3 text-3xl font-bold text-forest">Links worth bookmarking</h1>
+        <p className="mt-2 max-w-2xl text-muted-foreground">Tools, guides and communities our members recommend.</p>
+      </section>
       <section className="mx-auto grid max-w-6xl gap-4 px-6 pb-16 md:grid-cols-2">
         {resources.map((r) => (
           <a key={r.url} href={r.url} target="_blank" rel="noreferrer" className={`${cardClass} flex items-center justify-between transition hover:-translate-y-1`}>
