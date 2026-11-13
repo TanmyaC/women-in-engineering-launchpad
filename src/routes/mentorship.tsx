@@ -4,7 +4,8 @@ import { useState } from "react";
 import { z } from "zod";
 import { PageHeader, cardClass } from "@/components/SiteShell";
 import { supabase } from "@/integrations/supabase/client";
-import { Check, Copy, Linkedin } from "lucide-react";
+import { Check, Copy } from "lucide-react";
+import linkedinLogo from "@/assets/linkedin-logo.png.asset.json";
 import { Button } from "@/components/ui/button";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { mentorProfileSchema as schema } from "@/lib/mentor-profile";
@@ -102,7 +103,7 @@ function Mentorship() {
             <div className="mt-3 flex flex-wrap gap-2">{m.topics.map((t) => <span key={t} className="rounded-full bg-secondary px-3 py-1 text-xs text-secondary-foreground">{t}</span>)}</div>
             <div className="mt-auto pt-6">{m.linkedin_url ? <>
               <div className="flex items-center gap-2">
-                <a href={m.linkedin_url} target="_blank" rel="noopener noreferrer" className="flex min-w-0 flex-1 items-start gap-2 rounded-sm text-sm text-forest underline-offset-4 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"><Linkedin aria-hidden="true" className="mt-0.5 h-4 w-4 shrink-0" /><span className="min-w-0 [overflow-wrap:anywhere]">{m.linkedin_url}</span></a>
+                <a href={m.linkedin_url} target="_blank" rel="noopener noreferrer" className="flex min-w-0 flex-1 items-start gap-2 rounded-sm text-sm text-forest underline-offset-4 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"><img src={linkedinLogo.url} alt="" width={20} height={20} className="h-5 w-5 shrink-0" /><span className="min-w-0 [overflow-wrap:anywhere]">{m.linkedin_url}</span></a>
                 <TooltipProvider><Tooltip><TooltipTrigger asChild>
                   <Button type="button" variant="outline" size="icon" className="h-11 w-11 shrink-0 rounded-full text-forest" aria-label={`Copy LinkedIn link for ${m.name}`} onClick={() => { if (m.linkedin_url) void copyLinkedIn(m.id, m.linkedin_url); }}>
                     {copyStatus[m.id] === "copied" ? <Check aria-hidden="true" /> : <Copy aria-hidden="true" />}
