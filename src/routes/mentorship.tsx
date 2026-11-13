@@ -4,8 +4,9 @@ import { useState } from "react";
 import { z } from "zod";
 import { PageHeader, cardClass } from "@/components/SiteShell";
 import { supabase } from "@/integrations/supabase/client";
-import { Linkedin } from "lucide-react";
+import { Check, Copy, Linkedin } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { mentorProfileSchema as schema } from "@/lib/mentor-profile";
 
 export const Route = createFileRoute("/mentorship")({
@@ -20,6 +21,7 @@ function Mentorship() {
   const [open, setOpen] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [done, setDone] = useState(false);
+  const [copyStatus, setCopyStatus] = useState<Record<string, "copied" | "failed">>({});
   const { data: mentors = [], isLoading } = useQuery({
     queryKey: ["mentors"],
     queryFn: async () => {
@@ -47,6 +49,24 @@ function Mentorship() {
     if (!parsed.success) return setError(parsed.error.issues[0]?.message ?? "Please check the form");
     setError(null);
     add.mutate(parsed.data);
+  }
+
+  async function copyLinkedIn(id: string, url: string) {
+    let copied = false;
+    try {
+      await navigator.clipboard.writeText(url);
+      copied = true;
+    } catch {
+      const field = document.createElement("textarea");
+      field.value = url;
+      field.setAttribute("readonly", "");
+      field.className = "fixed left-0 top-0 opacity-0";
+      document.body.appendChild(field);
+      field.select();
+      try { copied = document.execCommand("copy"); } catch { copied = false; }
+      field.remove();
+    }
+    setCopyStatus((previous) => ({ ...previous, [id]: copied ? "copied" : "failed" }));
   }
 
   return (
@@ -80,7 +100,18 @@ function Mentorship() {
             <h2 className="mt-4 text-xl font-bold text-forest">{m.name}</h2>
             <p className="text-muted-foreground">{m.role}</p>
             <div className="mt-3 flex flex-wrap gap-2">{m.topics.map((t) => <span key={t} className="rounded-full bg-secondary px-3 py-1 text-xs text-secondary-foreground">{t}</span>)}</div>
-            <div className="mt-auto pt-6">{m.linkedin_url ? <Button asChild className="h-auto w-full rounded-full px-5 py-2.5"><a href={m.linkedin_url} target="_blank" rel="noopener noreferrer"><Linkedin aria-hidden="true" />Connect on LinkedIn</a></Button> : <p className="text-sm text-muted-foreground">LinkedIn profile not yet added.</p>}</div>
+            <div className="mt-auto pt-6">{m.linkedin_url ? <>
+              <div className="flex items-center gap-2">
+                <Button asChild className="h-11 min-w-0 flex-1 rounded-full px-3"><a href={m.linkedin_url} target="_blank" rel="noopener noreferrer"><Linkedin aria-hidden="true" />Connect on LinkedIn</a></Button>
+                <TooltipProvider><Tooltip><TooltipTrigger asChild>
+                  <Button type="button" variant="outline" size="icon" className="h-11 w-11 shrink-0 rounded-full text-forest" aria-label={`Copy LinkedIn link for ${m.name}`} onClick={() => { if (m.linkedin_url) void copyLinkedIn(m.id, m.linkedin_url); }}>
+                    {copyStatus[m.id] === "copied" ? <Check aria-hidden="true" /> : <Copy aria-hidden="true" />}
+                  </Button>
+                </TooltipTrigger><TooltipContent>Copy LinkedIn link</TooltipContent></Tooltip></TooltipProvider>
+              </div>
+              <p role="status" className="mt-2 min-h-5 text-xs text-muted-foreground">{copyStatus[m.id] === "copied" ? "Link copied!" : copyStatus[m.id] === "failed" ? "Copy unavailable. Select the link below." : ""}</p>
+              {copyStatus[m.id] === "failed" && <input aria-label={`LinkedIn link for ${m.name}`} readOnly value={m.linkedin_url} onFocus={(event) => event.currentTarget.select()} className={`${input} mt-1 text-xs`} />}
+            </> : <p className="text-sm text-muted-foreground">LinkedIn profile not yet added.</p>}</div>
           </div>
         ))}
       </section>
