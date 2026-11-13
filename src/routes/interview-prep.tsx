@@ -36,6 +36,7 @@ function Section({ title, items, mark, groups, goal, notes, topics }: { goal?: s
       {open && goal && <p className="mt-4 font-medium text-foreground">🎯 {goal}</p>}
       {open && notes && <Link to="/sessions" className="mt-4 inline-flex items-center gap-2 rounded-full border border-primary px-4 py-2 text-sm font-medium text-primary transition hover:bg-primary hover:text-primary-foreground">📄 Session notes: {notes} →</Link>}
       {open && groups && <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">{groups.map((g, n) => (<div key={g.name} className={`rounded-2xl p-5 ${g.tone}`}><p className="text-xs font-semibold uppercase tracking-wider opacity-70">Step {n + 1}</p><h3 className="mt-1 text-lg font-bold">{g.name}</h3><ul className="mt-3 space-y-2 text-sm text-foreground/80">{g.items.map((i) => <li key={i} className="flex gap-2"><span>•</span><span>{i}</span></li>)}</ul></div>))}</div>}
+      {open && groups && <EngineeringResources topic={title} />}
       {open && topics && <div className="mt-6 divide-y divide-border">{topics.map((topic) => <EngineeringTopic key={topic.name} topic={topic} />)}</div>}
       {open && !groups && !topics && <ul className="mt-5 grid gap-3 text-muted-foreground md:grid-cols-2">{items.map((i) => <li key={i}>{mark} {i}</li>)}</ul>}
     </div>

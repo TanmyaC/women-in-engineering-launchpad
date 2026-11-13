@@ -1,0 +1,4 @@
+ALTER TABLE public.engineering_resources DROP CONSTRAINT engineering_resources_topic_check;
+ALTER TABLE public.engineering_resources ADD CONSTRAINT engineering_resources_topic_check CHECK (topic IN ('Live coding', 'AI coding', 'AI code reviews', 'System design', 'Recruiter interview', 'Hiring manager & behavioral interview'));
+ALTER TABLE public.engineering_tips DROP CONSTRAINT engineering_tips_topic_check;
+ALTER TABLE public.engineering_tips ADD CONSTRAINT engineering_tips_topic_check CHECK (topic IN ('Live coding', 'AI coding', 'AI code reviews', 'System design', 'Recruiter interview', 'Hiring manager & behavioral interview'));
