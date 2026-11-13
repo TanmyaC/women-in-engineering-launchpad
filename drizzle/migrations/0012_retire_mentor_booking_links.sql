@@ -1,0 +1,2 @@
+ALTER TABLE public.mentors ALTER COLUMN booking_url SET DEFAULT '';
+COMMENT ON COLUMN public.mentors.booking_url IS 'DEPRECATED: replaced by linkedin_url; retained for compatibility with existing records.';
