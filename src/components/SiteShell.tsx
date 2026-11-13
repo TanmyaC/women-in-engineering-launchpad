@@ -1,5 +1,8 @@
 import { Link } from "@tanstack/react-router";
 import type { ReactNode } from "react";
+import { Lightbulb } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 
 const nav = [
   { to: "/sessions", label: "Session notes" },
@@ -18,12 +21,24 @@ export function SiteShell({ children }: { children: ReactNode }) {
             <span className="h-3 w-3 rounded-full bg-gradient-warm" />
             Miro Women In Engineering
           </Link>
-          <nav className="flex flex-wrap gap-1 text-sm">
+          <nav className="flex flex-wrap items-center gap-1 text-sm">
             {nav.map((n) => (
               <Link key={n.to} to={n.to} className="rounded-full px-3 py-1.5 text-muted-foreground transition-colors hover:bg-muted hover:text-foreground" activeProps={{ className: "bg-secondary text-secondary-foreground" }}>
                 {n.label}
               </Link>
             ))}
+            <TooltipProvider delayDuration={200}>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <Button asChild variant="secondary" size="icon" className="shrink-0 rounded-full text-primary">
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSemU_A6jIU7JbiDUu3o528JvqAoP6JoWZpaRZ-4GyziINtKqA/viewform?usp=publish-editor" target="_blank" rel="noopener noreferrer" aria-label="Share ideas or feedback">
+                      <Lightbulb aria-hidden="true" />
+                    </a>
+                  </Button>
+                </TooltipTrigger>
+                <TooltipContent>Ideas &amp; feedback</TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
           </nav>
         </div>
       </header>
