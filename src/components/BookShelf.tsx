@@ -74,7 +74,7 @@ export function BookShelf() {
         {books.map((b) => (
           <div key={b.id} className="flex flex-col overflow-hidden rounded-[var(--radius)] border border-border bg-card shadow-soft transition hover:-translate-y-1">
             <div className="p-5">
-              <div className="mb-3 flex items-center justify-between gap-2"><BookOpen className="h-7 w-7 text-primary" /><span className="flex items-center gap-2">{b.theme && <span className={`rounded-full px-3 py-1 text-xs font-semibold ${tagClass(b.theme)}`}>{b.theme}</span>}<AuthorBadge initials={b.author_initials} /></span></div>
+              <div className="mb-3 flex items-center justify-between gap-2"><BookOpen className="h-7 w-7 text-primary" /><span className="flex items-center gap-2">{b.theme && <span className={`rounded-full px-3 py-1 text-xs font-semibold ${tagClass(b.theme)}`}>{b.theme}</span>}<AuthorBadge initials={b.author_initials} entry={{ table: "books", id: b.id, createdBy: b.created_by }} /></span></div>
               <h3 className="text-lg font-bold text-forest">{b.title}</h3>
               <p className="mt-2 whitespace-pre-line text-sm text-muted-foreground">{b.why}</p>
             </div>

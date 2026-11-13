@@ -53,7 +53,7 @@ export function EngineeringResources({ topic }: { topic: string }) {
     {resources.isError && <div role="alert" className="mt-4 text-sm text-destructive">Could not load resources. <Button variant="link" onClick={() => resources.refetch()}>Try again</Button></div>}
     {resources.isSuccess && resources.data.length === 0 && <p className="mt-4 text-sm text-muted-foreground">No resources added yet.</p>}
     <div className="mt-4 divide-y divide-border">{resources.data?.map((resource) => <article key={resource.id} className="py-4">
-      <div className="flex items-start justify-between gap-3"><h4 className="break-words text-lg font-semibold text-forest">{resource.name}</h4><AuthorBadge initials={resource.author_initials} /></div>
+      <div className="flex items-start justify-between gap-3"><h4 className="break-words text-lg font-semibold text-forest">{resource.name}</h4><AuthorBadge initials={resource.author_initials} entry={{ table: "engineering_resources", id: resource.id, createdBy: resource.created_by }} /></div>
       <p className="mt-2 whitespace-pre-line break-words text-muted-foreground">{resource.why}</p>
       <Button asChild variant="link" className="mt-2 px-0"><a href={resource.url} target="_blank" rel="noopener noreferrer">Open resource<ExternalLink aria-hidden /></a></Button>
     </article>)}</div>
