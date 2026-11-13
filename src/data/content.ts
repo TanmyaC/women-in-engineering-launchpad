@@ -39,13 +39,6 @@ export const interviewPrep = {
   ],
 };
 
-export type Mentor = { name: string; role: string; topics: string[]; bookingUrl: string };
-export const mentors: Mentor[] = [
-  { name: "Mentor name", role: "Staff Engineer", topics: ["Career growth", "System design"], bookingUrl: "https://calendly.com/" },
-  { name: "Mentor name", role: "Engineering Manager", topics: ["Moving into management", "Interviews"], bookingUrl: "https://calendly.com/" },
-  { name: "Mentor name", role: "Senior Product Designer", topics: ["Portfolio reviews", "Cross-functional work"], bookingUrl: "https://calendly.com/" },
-];
-
 export const resources = [
   { title: "Tech Interview Handbook", url: "https://www.techinterviewhandbook.org/", category: "Interview prep" },
   { title: "Levels.fyi — salary data", url: "https://www.levels.fyi/", category: "Job search" },
