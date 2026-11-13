@@ -162,6 +162,13 @@
       "when": 1794609560013,
       "tag": "0022_prompts",
       "breakpoints": true
+    },
+    {
+      "idx": 23,
+      "version": "7",
+      "when": 1794610291949,
+      "tag": "0023_author_names",
+      "breakpoints": true
     }
   ]
 }
