@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { supabase } from "@/integrations/supabase/client";
 import { engineeringResourceSchema } from "@/lib/engineering-resource";
+import { EngineeringTips } from "@/components/EngineeringTips";
 
 const inputClass = "w-full rounded-lg border border-input bg-background px-3 py-2 font-normal outline-none focus:ring-2 focus:ring-ring";
 
@@ -55,5 +56,6 @@ export function EngineeringResources({ topic }: { topic: string }) {
       <p className="mt-2 whitespace-pre-line break-words text-muted-foreground">{resource.why}</p>
       <Button asChild variant="link" className="mt-2 px-0"><a href={resource.url} target="_blank" rel="noopener noreferrer">Open resource<ExternalLink aria-hidden /></a></Button>
     </article>)}</div>
+    <EngineeringTips topic={topic} />
   </div>;
 }
