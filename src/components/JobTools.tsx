@@ -1,3 +1,4 @@
+import { ChevronDown } from "lucide-react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
 import { z } from "zod";
@@ -45,7 +46,8 @@ export function JobTools() {
   return (
     <section className="mx-auto max-w-6xl px-6 pb-20">
       <div className="flex flex-wrap items-end justify-between gap-4">
-        <button type="button" onClick={() => setExpanded((x) => !x)} aria-expanded={expanded} className="flex items-start gap-3 text-left">
+        <button type="button" onClick={() => setExpanded((x) => !x)} aria-expanded={expanded} className="group flex items-center gap-4 text-left">
+          <span className={`inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full border-2 border-primary bg-primary/10 text-primary shadow-sm transition-all duration-300 group-hover:bg-primary group-hover:text-primary-foreground ${expanded ? "rotate-180" : ""}`} aria-hidden><ChevronDown size={22} strokeWidth={2.5} /></span>
           <div>
           <h2 className="text-3xl font-bold text-forest">Tools we recommend</h2>
           <p className="mt-1 text-muted-foreground">Job boards, CV helpers, AI tools — share what worked for you.</p>
