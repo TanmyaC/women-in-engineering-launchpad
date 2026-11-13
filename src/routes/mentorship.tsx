@@ -102,7 +102,7 @@ function Mentorship() {
             <div className="mt-3 flex flex-wrap gap-2">{m.topics.map((t) => <span key={t} className="rounded-full bg-secondary px-3 py-1 text-xs text-secondary-foreground">{t}</span>)}</div>
             <div className="mt-auto pt-6">{m.linkedin_url ? <>
               <div className="flex items-center gap-2">
-                <Button asChild className="h-11 min-w-0 flex-1 rounded-full px-3"><a href={m.linkedin_url} target="_blank" rel="noopener noreferrer"><Linkedin aria-hidden="true" />Connect on LinkedIn</a></Button>
+                <a href={m.linkedin_url} target="_blank" rel="noopener noreferrer" className="flex min-w-0 flex-1 items-start gap-2 rounded-sm text-sm text-forest underline-offset-4 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"><Linkedin aria-hidden="true" className="mt-0.5 h-4 w-4 shrink-0" /><span className="min-w-0 [overflow-wrap:anywhere]">{m.linkedin_url}</span></a>
                 <TooltipProvider><Tooltip><TooltipTrigger asChild>
                   <Button type="button" variant="outline" size="icon" className="h-11 w-11 shrink-0 rounded-full text-forest" aria-label={`Copy LinkedIn link for ${m.name}`} onClick={() => { if (m.linkedin_url) void copyLinkedIn(m.id, m.linkedin_url); }}>
                     {copyStatus[m.id] === "copied" ? <Check aria-hidden="true" /> : <Copy aria-hidden="true" />}
