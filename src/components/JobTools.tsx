@@ -46,7 +46,6 @@ export function JobTools() {
     <section className="mx-auto max-w-6xl px-6 pb-20">
       <div className="flex flex-wrap items-end justify-between gap-4">
         <button type="button" onClick={() => setExpanded((x) => !x)} aria-expanded={expanded} className="flex items-start gap-3 text-left">
-          <span className={`mt-1 inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-secondary text-lg text-forest transition-transform duration-300 ${expanded ? "rotate-180" : ""}`} aria-hidden>⌄</span>
           <div>
           <h2 className="text-3xl font-bold text-forest">Tools we recommend</h2>
           <p className="mt-1 text-muted-foreground">Job boards, CV helpers, AI tools — share what worked for you.</p>

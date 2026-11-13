@@ -34,7 +34,6 @@ export function AiJobJourney() {
           <h2 className="mt-2 text-3xl font-bold md:text-4xl">{j.title}</h2>
           <p className="mt-2 text-lg opacity-90">{j.tagline}</p>
         </div>
-          <span className={`mt-2 inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-forest-foreground/15 text-xl transition-transform duration-300 ${open ? "rotate-180" : ""}`} aria-hidden>⌄</span>
         </button>
         <div className={`grid transition-all duration-500 ease-out ${open ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"}`}>
         <div className="overflow-hidden">
