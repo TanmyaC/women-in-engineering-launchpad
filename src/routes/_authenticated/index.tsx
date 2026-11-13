@@ -61,7 +61,7 @@ function Index() {
         <TopicBoard />
       </section>
 
-      <section aria-labelledby="explore-heading" className="border-y border-primary/15 bg-accent/15">
+      <section aria-labelledby="explore-heading" className="border-y border-primary/15">
         <div className="mx-auto max-w-6xl px-6 py-10 md:py-12">
         <p className="flex items-center gap-3 text-sm font-semibold uppercase tracking-widest text-primary"><span aria-hidden="true" className="h-px w-8 bg-primary" />Explore the hub</p>
         <h2 id="explore-heading" className="mt-3 text-3xl font-bold text-forest md:text-4xl">Shared knowledge. New possibilities.</h2>
@@ -107,7 +107,7 @@ function Index() {
         </div>
       </section>
 
-      <section aria-labelledby="how-heading" className="border-y border-sage/25 bg-secondary/40">
+      <section aria-labelledby="how-heading" className="border-y border-sage/25">
         <div className="mx-auto max-w-6xl px-6 py-10 md:py-12">
           <div>
             <p className="flex items-center gap-3 text-sm font-semibold uppercase tracking-widest text-primary"><span aria-hidden="true" className="h-px w-8 bg-primary" />How we do it</p>
