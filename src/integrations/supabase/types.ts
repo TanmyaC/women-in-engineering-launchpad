@@ -62,6 +62,33 @@ export type Database = {
         }
         Relationships: []
       }
+      engineering_resources: {
+        Row: {
+          created_at: string
+          id: string
+          name: string
+          topic: string
+          url: string
+          why: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          name: string
+          topic: string
+          url: string
+          why: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          name?: string
+          topic?: string
+          url?: string
+          why?: string
+        }
+        Relationships: []
+      }
       job_tools: {
         Row: {
           created_at: string
