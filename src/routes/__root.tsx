@@ -13,6 +13,7 @@ import { useEffect, type ReactNode } from "react";
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { SiteShell } from "@/components/SiteShell";
+import { Toaster } from "@/components/ui/sonner";
 import { supabase } from "@/integrations/supabase/client";
 
 function NotFoundComponent() {
@@ -140,6 +141,7 @@ function RootComponent() {
       <SiteShell>
         <Outlet />
       </SiteShell>
+      <Toaster />
     </QueryClientProvider>
   );
 }
