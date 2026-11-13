@@ -59,7 +59,7 @@ function EngineeringTopic({ topic }: { topic: typeof interviewPrep.functions[num
 function Prep() {
   return (
     <>
-      <PageHeader eyebrow="Interview prep" title="Walk in prepared" intro="Start with the basics that apply everywhere, then go deeper for your function." />
+      <PageHeader eyebrow="Interview prep" title="Walk in prepared" intro="Prepare for every stage of your interview with practical advice, shared resources, and tips from the community." />
       <section className="mx-auto grid max-w-6xl gap-5 px-6 pb-20">
         <Section title="Recruiter interview" items={[]} mark="" groups={RECRUITER} goal="Goal: be clear on why you, why this role, and what you need." />
         <Section title="Hiring manager & behavioral interview" items={[]} mark="" groups={HIRING} notes="Navigating Behavioral & Hiring Manager Interviews" goal="Goal: show you can do the job, work well with people, and prove it with real stories." />
