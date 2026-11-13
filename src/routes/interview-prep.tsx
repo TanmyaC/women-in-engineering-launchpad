@@ -43,7 +43,7 @@ function Prep() {
     <>
       <PageHeader eyebrow="Interview prep" title="Walk in prepared" intro="Start with the basics that apply everywhere, then go deeper for your function." />
       <section className="mx-auto grid max-w-6xl gap-5 px-6 pb-20">
-        <Section title="Recruiter interview" items={[]} mark="" groups={RECRUITER} />
+        <Section title="Recruiter interview" items={[]} mark="" groups={RECRUITER} goal="Goal: be clear on why you, why this role, and what you need." />
         <Section title="Hiring manager & behavioral interview" items={[]} mark="" groups={HIRING} goal="Goal: show you can do the job, work well with people, and prove it with real stories." />
         {interviewPrep.functions.map((f) => <Section key={f.name} title={f.name} items={f.items} mark="—" />)}
       </section>
