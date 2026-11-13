@@ -50,6 +50,13 @@
       "when": 1794588324372,
       "tag": "0006_create_books",
       "breakpoints": true
+    },
+    {
+      "idx": 7,
+      "version": "7",
+      "when": 1794588605937,
+      "tag": "0007_books_theme",
+      "breakpoints": true
     }
   ]
 }

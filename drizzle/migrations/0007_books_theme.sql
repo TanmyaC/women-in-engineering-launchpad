@@ -1,0 +1,1 @@
+ALTER TABLE public.books ADD COLUMN theme text CHECK (theme IS NULL OR char_length(theme) <= 60);
