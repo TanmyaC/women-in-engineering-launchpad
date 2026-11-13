@@ -40,6 +40,7 @@ export type Database = {
           cover_path: string | null
           created_at: string
           id: string
+          theme: string | null
           title: string
           why: string
         }
@@ -47,6 +48,7 @@ export type Database = {
           cover_path?: string | null
           created_at?: string
           id?: string
+          theme?: string | null
           title: string
           why: string
         }
@@ -54,6 +56,7 @@ export type Database = {
           cover_path?: string | null
           created_at?: string
           id?: string
+          theme?: string | null
           title?: string
           why?: string
         }

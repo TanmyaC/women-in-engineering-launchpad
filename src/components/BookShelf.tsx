@@ -8,7 +8,9 @@ import { supabase } from "@/integrations/supabase/client";
 const schema = z.object({
   title: z.string().trim().min(1, "Please add the book name").max(150),
   why: z.string().trim().min(1, "Please tell us why you recommend it").max(800),
+  theme: z.string().trim().min(1, "Please pick a theme").max(60),
 });
+const THEMES = ["Leadership", "Career growth", "Management", "Product", "Design", "Communication", "Mindset"];
 const input = "w-full rounded-lg border border-input bg-background px-3 py-2 font-normal outline-none focus:ring-2 focus:ring-ring";
 
 export function BookShelf() {
@@ -35,7 +37,7 @@ export function BookShelf() {
   function submit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const f = new FormData(e.currentTarget);
-    const parsed = schema.safeParse({ title: f.get("title"), why: f.get("why") });
+    const parsed = schema.safeParse({ title: f.get("title"), why: f.get("why"), theme: f.get("theme") });
     if (!parsed.success) return setError(parsed.error.issues[0]?.message ?? "Please check the form");
     setError(null);
     add.mutate(parsed.data);
@@ -53,6 +55,7 @@ export function BookShelf() {
       {open && (
         <form onSubmit={submit} className={`${cardClass} mt-6 grid gap-4`}>
           <label className="grid gap-1 text-sm font-medium">Book name<input name="title" placeholder="e.g. The Manager's Path" className={input} maxLength={150} /></label>
+          <label className="grid gap-1 text-sm font-medium">Theme<input name="theme" list="book-themes" placeholder="e.g. Leadership, Product, Mindset" className={input} maxLength={60} /><datalist id="book-themes">{THEMES.map((t) => <option key={t} value={t} />)}</datalist></label>
           <label className="grid gap-1 text-sm font-medium">Why you recommend it<textarea name="why" rows={3} placeholder="What did you take away from it?" className={input} maxLength={800} /></label>
           {error && <p className="text-sm text-destructive">{error}</p>}
           <div className="flex gap-3">
@@ -67,7 +70,7 @@ export function BookShelf() {
         {books.map((b) => (
           <div key={b.id} className="flex flex-col overflow-hidden rounded-[var(--radius)] border border-border bg-card shadow-soft transition hover:-translate-y-1">
             <div className="p-5">
-              <BookOpen className="mb-3 h-7 w-7 text-primary" />
+              <div className="mb-3 flex items-center justify-between gap-2"><BookOpen className="h-7 w-7 text-primary" />{b.theme && <span className="rounded-full bg-secondary px-3 py-1 text-xs font-medium text-forest">{b.theme}</span>}</div>
               <h3 className="text-lg font-bold text-forest">{b.title}</h3>
               <p className="mt-2 whitespace-pre-line text-sm text-muted-foreground">{b.why}</p>
             </div>
