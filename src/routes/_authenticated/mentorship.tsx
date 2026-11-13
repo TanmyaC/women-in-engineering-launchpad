@@ -1,3 +1,4 @@
+import { AuthorBadge } from "@/components/AuthorBadge";
 import { createFileRoute } from "@tanstack/react-router";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
@@ -103,6 +104,7 @@ function Mentorship() {
                 <h2 className="text-lg font-semibold leading-snug text-forest [overflow-wrap:anywhere]">{m.name}</h2>
                 <p className="mt-0.5 text-sm text-muted-foreground">{m.role}</p>
               </div>
+              <AuthorBadge initials={m.author_initials} className="ml-auto self-start" />
             </div>
             <div className="mb-4 mt-4 flex flex-wrap gap-1.5">{m.topics.map((t) => <span key={t} className="rounded-md bg-secondary/60 px-2.5 py-1 text-xs text-secondary-foreground">{t}</span>)}</div>
             <div className="relative mt-auto border-t border-border pt-3">{m.linkedin_url ? <>

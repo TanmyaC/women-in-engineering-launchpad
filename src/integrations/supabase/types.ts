@@ -16,19 +16,25 @@ export type Database = {
     Tables: {
       best_practices: {
         Row: {
+          author_initials: string | null
           created_at: string
+          created_by: string | null
           description: string
           id: string
           title: string
         }
         Insert: {
+          author_initials?: string | null
           created_at?: string
+          created_by?: string | null
           description: string
           id?: string
           title: string
         }
         Update: {
+          author_initials?: string | null
           created_at?: string
+          created_by?: string | null
           description?: string
           id?: string
           title?: string
@@ -37,24 +43,30 @@ export type Database = {
       }
       books: {
         Row: {
+          author_initials: string | null
           cover_path: string | null
           created_at: string
+          created_by: string | null
           id: string
           theme: string | null
           title: string
           why: string
         }
         Insert: {
+          author_initials?: string | null
           cover_path?: string | null
           created_at?: string
+          created_by?: string | null
           id?: string
           theme?: string | null
           title: string
           why: string
         }
         Update: {
+          author_initials?: string | null
           cover_path?: string | null
           created_at?: string
+          created_by?: string | null
           id?: string
           theme?: string | null
           title?: string
@@ -64,7 +76,9 @@ export type Database = {
       }
       engineering_resources: {
         Row: {
+          author_initials: string | null
           created_at: string
+          created_by: string | null
           id: string
           name: string
           topic: string
@@ -72,7 +86,9 @@ export type Database = {
           why: string
         }
         Insert: {
+          author_initials?: string | null
           created_at?: string
+          created_by?: string | null
           id?: string
           name: string
           topic: string
@@ -80,7 +96,9 @@ export type Database = {
           why: string
         }
         Update: {
+          author_initials?: string | null
           created_at?: string
+          created_by?: string | null
           id?: string
           name?: string
           topic?: string
@@ -91,19 +109,25 @@ export type Database = {
       }
       engineering_tips: {
         Row: {
+          author_initials: string | null
           created_at: string
+          created_by: string | null
           id: string
           tip: string
           topic: string
         }
         Insert: {
+          author_initials?: string | null
           created_at?: string
+          created_by?: string | null
           id?: string
           tip: string
           topic: string
         }
         Update: {
+          author_initials?: string | null
           created_at?: string
+          created_by?: string | null
           id?: string
           tip?: string
           topic?: string
@@ -130,21 +154,27 @@ export type Database = {
       }
       job_tools: {
         Row: {
+          author_initials: string | null
           created_at: string
+          created_by: string | null
           description: string
           id: string
           title: string
           url: string | null
         }
         Insert: {
+          author_initials?: string | null
           created_at?: string
+          created_by?: string | null
           description: string
           id?: string
           title: string
           url?: string | null
         }
         Update: {
+          author_initials?: string | null
           created_at?: string
+          created_by?: string | null
           description?: string
           id?: string
           title?: string
@@ -169,8 +199,10 @@ export type Database = {
       }
       mentors: {
         Row: {
+          author_initials: string | null
           booking_url: string
           created_at: string
+          created_by: string | null
           id: string
           linkedin_url: string | null
           name: string
@@ -178,8 +210,10 @@ export type Database = {
           topics: string[]
         }
         Insert: {
+          author_initials?: string | null
           booking_url?: string
           created_at?: string
+          created_by?: string | null
           id?: string
           linkedin_url?: string | null
           name: string
@@ -187,8 +221,10 @@ export type Database = {
           topics?: string[]
         }
         Update: {
+          author_initials?: string | null
           booking_url?: string
           created_at?: string
+          created_by?: string | null
           id?: string
           linkedin_url?: string | null
           name?: string
@@ -199,21 +235,27 @@ export type Database = {
       }
       target_companies: {
         Row: {
+          author_initials: string | null
           created_at: string
+          created_by: string | null
           id: string
           name: string
           note: string | null
           url: string | null
         }
         Insert: {
+          author_initials?: string | null
           created_at?: string
+          created_by?: string | null
           id?: string
           name: string
           note?: string | null
           url?: string | null
         }
         Update: {
+          author_initials?: string | null
           created_at?: string
+          created_by?: string | null
           id?: string
           name?: string
           note?: string | null
@@ -223,19 +265,25 @@ export type Database = {
       }
       topics: {
         Row: {
+          author_initials: string | null
           created_at: string
+          created_by: string | null
           id: string
           title: string
           votes: number
         }
         Insert: {
+          author_initials?: string | null
           created_at?: string
+          created_by?: string | null
           id?: string
           title: string
           votes?: number
         }
         Update: {
+          author_initials?: string | null
           created_at?: string
+          created_by?: string | null
           id?: string
           title?: string
           votes?: number

@@ -1,3 +1,4 @@
+import { AuthorBadge } from "@/components/AuthorBadge";
 import { ChevronDown } from "lucide-react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
@@ -70,7 +71,7 @@ export function BestPractices() {
         {!isLoading && tools.length === 0 && <p className="text-muted-foreground">No best practices yet — share the first one!</p>}
         {tools.map((t) => (
           <div key={t.id} className={cardClass}>
-            <h3 className="text-xl font-bold text-forest">{t.title}</h3>
+            <div className="flex items-start justify-between gap-3"><h3 className="text-xl font-bold text-forest">{t.title}</h3><AuthorBadge initials={t.author_initials} /></div>
             <p className="mt-2 whitespace-pre-line text-muted-foreground">{t.description}</p>
           </div>
         ))}

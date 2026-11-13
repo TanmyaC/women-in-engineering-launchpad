@@ -1,3 +1,4 @@
+import { AuthorBadge } from "@/components/AuthorBadge";
 import { ChevronDown } from "lucide-react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
@@ -72,7 +73,7 @@ export function TargetCompanies() {
         {!isLoading && companies.length === 0 && <p className="text-muted-foreground">No companies yet — add the first one!</p>}
         {companies.map((c) => (
           <div key={c.id} className={cardClass}>
-            <h3 className="text-xl font-bold text-forest">🏢 {c.name}</h3>
+            <div className="flex items-start justify-between gap-3"><h3 className="text-xl font-bold text-forest">🏢 {c.name}</h3><AuthorBadge initials={c.author_initials} /></div>
             {c.note && <p className="mt-2 whitespace-pre-line text-muted-foreground">{c.note}</p>}
             {c.url && <a href={c.url} target="_blank" rel="noopener noreferrer" className="mt-3 inline-block font-medium text-primary underline-offset-4 hover:underline">Careers page ↗</a>}
           </div>
