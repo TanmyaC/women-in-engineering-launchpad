@@ -22,6 +22,6 @@ function JoinPage() {
   const { code } = Route.useSearch();
   const valid = normalizeInviteCode(code);
   const [error, setError] = useState<string | null>(valid ? null : "This invite link looks incomplete. Ask for a fresh link.");
-  useEffect(() => { if (valid) sessionStorage.setItem(INVITE_STORAGE_KEY, valid); }, [valid]);
+  useEffect(() => { if (valid) localStorage.setItem(INVITE_STORAGE_KEY, valid); }, [valid]);
   return <AuthCard title="You're invited" text="Join our community with your Google account." error={error} onError={setError} />;
 }
