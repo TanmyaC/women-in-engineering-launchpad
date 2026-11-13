@@ -3,7 +3,7 @@ import { useState } from "react";
 import { GoogleButton } from "@/components/GoogleButton";
 
 export const Route = createFileRoute("/auth")({
-  validateSearch: (s: Record<string, unknown>) => ({ needInvite: s.needInvite === true || s.needInvite === "true" ? true : undefined }),
+  validateSearch: (s: Record<string, unknown>): { needInvite?: boolean } => ({ needInvite: s.needInvite === true || s.needInvite === "true" ? true : undefined }),
   head: () => ({
     meta: [
       { title: "Sign in · Miro Women In Engineering" },
