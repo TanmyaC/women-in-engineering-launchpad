@@ -24,8 +24,8 @@ function Resources() {
           </a>
         ))}
       </section>
-      <BookShelf />
       <PromptLibrary />
+      <BookShelf />
     </>
   );
 }
