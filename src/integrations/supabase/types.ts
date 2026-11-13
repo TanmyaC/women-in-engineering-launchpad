@@ -74,6 +74,41 @@ export type Database = {
         }
         Relationships: []
       }
+      company_contacts: {
+        Row: {
+          company_id: string
+          created_at: string
+          full_name: string | null
+          id: string
+          initials: string | null
+          user_id: string
+        }
+        Insert: {
+          company_id: string
+          created_at?: string
+          full_name?: string | null
+          id?: string
+          initials?: string | null
+          user_id?: string
+        }
+        Update: {
+          company_id?: string
+          created_at?: string
+          full_name?: string | null
+          id?: string
+          initials?: string | null
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "company_contacts_company_id_fkey"
+            columns: ["company_id"]
+            isOneToOne: false
+            referencedRelation: "target_companies"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       engineering_resources: {
         Row: {
           author_initials: string | null
