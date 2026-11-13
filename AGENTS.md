@@ -28,3 +28,7 @@ use the editor.
   own key and store it in Secrets.
 - **Secrets.** Lovable manages them. Do not put secret values in the repo.
 <!-- LOVABLE:END -->
+
+## Project rules
+- All site content (sessions, jobs, interview prep, mentors, resources) lives in `src/data/content.ts` so new docs are added as data, not new components.
+- Shared header/footer live in `src/components/SiteShell.tsx`, rendered from `__root.tsx`.
