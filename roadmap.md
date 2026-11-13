@@ -1,3 +1,3 @@
 - [x] Replace mentor booking links with LinkedIn contact.
 - [x] Fix mentor profile saving after removing the booking link requirement; verified saving and refreshing.
-- [ ] Make the Add yourself as a mentor button more visible.
+- [x] Make the Add yourself as a mentor button more visible; verified it opens the form and fits mobile.
