@@ -12,7 +12,7 @@ export const Route = createFileRoute("/mentorship")({
 
 const schema = z.object({
   name: z.string().trim().min(1, "Please add your name").max(100),
-  role: z.string().trim().min(1, "Please add your role").max(100),
+  role: z.string().trim().min(1, "Please add your function").max(100),
   topics: z.array(z.string().trim().min(1).max(40)).max(8, "Up to 8 topics"),
   booking_url: z.string().trim().max(300).url("Please paste a full link").startsWith("https://", "Link must start with https://"),
 });
@@ -64,7 +64,7 @@ function Mentorship() {
           <form onSubmit={submit} className={`${cardClass} grid gap-4 md:grid-cols-2`}>
             <h2 className="text-2xl font-bold text-forest md:col-span-2">Become a mentor</h2>
             <label className="grid gap-1 text-sm font-medium">Name<input name="name" className={input} maxLength={100} /></label>
-            <label className="grid gap-1 text-sm font-medium">Role<input name="role" placeholder="e.g. Senior Engineer" className={input} maxLength={100} /></label>
+            <label className="grid gap-1 text-sm font-medium">Function<input name="role" list="functions" placeholder="e.g. Engineering, Product, Design" className={input} maxLength={100} /><datalist id="functions">{["Engineering", "Product", "Design", "Data", "Engineering Management", "Research"].map((f) => <option key={f} value={f} />)}</datalist></label>
             <label className="grid gap-1 text-sm font-medium">Topics you can help with<input name="topics" placeholder="Career growth, System design" className={input} /><span className="text-xs font-normal text-muted-foreground">Separate with commas</span></label>
             <label className="grid gap-1 text-sm font-medium">Booking link<input name="booking_url" placeholder="https://calendly.com/your-name" className={input} maxLength={300} /></label>
             {error && <p className="text-sm text-destructive md:col-span-2">{error}</p>}
