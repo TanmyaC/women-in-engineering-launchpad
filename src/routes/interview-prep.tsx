@@ -3,6 +3,7 @@ import { ChevronDown } from "lucide-react";
 import { useState } from "react";
 import { PageHeader } from "@/components/SiteShell";
 import { Button } from "@/components/ui/button";
+import { EngineeringResources } from "@/components/EngineeringResources";
 import { interviewPrep } from "@/data/content";
 
 export const Route = createFileRoute("/interview-prep")({
@@ -49,7 +50,7 @@ function EngineeringTopic({ topic }: { topic: typeof interviewPrep.functions[num
         <h3 className={`rounded-md px-3 py-2 text-lg font-semibold ${topic.tone}`}>{topic.name}</h3>
         <ChevronDown aria-hidden className={`shrink-0 text-primary transition-transform motion-reduce:transition-none ${open ? "rotate-180" : ""}`} />
       </Button>
-      {open && (topic.resources.length ? <ul className="mt-3 space-y-3">{topic.resources.map((resource) => <li key={resource.url}><Button asChild variant="link" className="h-auto whitespace-normal px-0 text-left"><a href={resource.url} target="_blank" rel="noopener noreferrer">{resource.title} ↗</a></Button></li>)}</ul> : <p className="mt-3 text-sm text-muted-foreground">No resources added yet.</p>)}
+      {open && <EngineeringResources topic={topic.name} />}
     </div>
   );
 }
