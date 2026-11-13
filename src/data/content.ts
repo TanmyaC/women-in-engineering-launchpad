@@ -123,12 +123,13 @@ export const interviewPrep = {
   functions: [
     {
       name: "Software engineering",
+      notes: "Engineering Interview Preparation Playbook",
       topics: [
-        { name: "Live coding", tone: "tag-career", resources: [] },
-        { name: "AI coding", tone: "tag-product", resources: [] },
-        { name: "AI code reviews", tone: "tag-management", resources: [] },
-        { name: "System design", tone: "tag-design", resources: [] },
-      ] as { name: string; tone: string; resources: { title: string; url: string }[] }[],
+        { name: "Live coding", tone: "tag-career", goal: "Goal: solve the problem out loud, write clean working code, and test it before time runs out.", resources: [] },
+        { name: "AI coding", tone: "tag-product", goal: "Goal: show you can solve the problem, use AI tools wisely, and own every line you ship.", resources: [] },
+        { name: "AI code reviews", tone: "tag-management", goal: "Goal: show you can read code critically, catch real issues, and give clear, kind feedback, including on AI-written code.", resources: [] },
+        { name: "System design", tone: "tag-design", goal: "Goal: drive the conversation, design for real requirements, and explain every trade-off you make.", resources: [] },
+      ] as { name: string; tone: string; goal: string; resources: { title: string; url: string }[] }[],
     },
   ],
 };
