@@ -68,14 +68,6 @@ export function AiJobJourney() {
           })}
         </div>
 
-        <div {...reveal(950)} >
-          <p className="mt-10 text-sm font-semibold uppercase tracking-widest opacity-80">🛡️ Guardrails at every stage</p>
-          <div className="mt-3 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-            {j.guardrails.map((g) => (
-              <div key={g} className="rounded-xl border border-accent/60 bg-accent/15 px-4 py-3 text-sm font-medium transition hover:-translate-y-1 hover:bg-accent hover:text-accent-foreground">{g}</div>
-            ))}
-          </div>
-        </div>
         </div>
         </div>
       </div>
