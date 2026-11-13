@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { PageHeader, cardClass } from "@/components/SiteShell";
 import { resources } from "@/data/content";
 import { BookShelf } from "@/components/BookShelf";
+import { PromptLibrary } from "@/components/PromptLibrary";
 
 export const Route = createFileRoute("/_authenticated/resources")({
   head: () => ({ meta: [{ title: "Useful resources — Miro Women In Engineering" }, { name: "description", content: "Hand-picked links, tools and communities for women in engineering." }, { property: "og:title", content: "Useful resources — Miro Women In Engineering" }, { property: "og:description", content: "Hand-picked links, tools and communities for women in engineering." }, { property: "og:type", content: "website" }, { name: "twitter:card", content: "summary_large_image" }] }),
@@ -24,6 +25,7 @@ function Resources() {
         ))}
       </section>
       <BookShelf />
+      <PromptLibrary />
     </>
   );
 }
