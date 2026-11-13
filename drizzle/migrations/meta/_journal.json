@@ -92,6 +92,13 @@
       "when": 1794604415532,
       "tag": "0012_retire_mentor_booking_links",
       "breakpoints": true
+    },
+    {
+      "idx": 13,
+      "version": "7",
+      "when": 1794604574818,
+      "tag": "0013_allow_retired_booking_link_default",
+      "breakpoints": true
     }
   ]
 }
