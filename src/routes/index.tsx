@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { cardClass } from "@/components/SiteShell";
 import { TopicBoard } from "@/components/TopicBoard";
-import hero from "@/assets/community-grow.jpg";
+import hero from "@/assets/hero-mentoring.jpg";
 
 export const Route = createFileRoute("/")({
   head: () => ({ meta: [{ title: "Miro Women In Engineering — Our community home" }, { name: "description", content: "The home of Miro Women In Engineering: vote on session topics, find a mentor, prep for interviews and grow together." }, { property: "og:title", content: "Miro Women In Engineering — Our community home" }, { property: "og:description", content: "Vote on session topics, find a mentor, prep for interviews and grow together." }, { property: "og:type", content: "website" }, { name: "twitter:card", content: "summary_large_image" }] }),
@@ -41,7 +41,7 @@ function Index() {
         </div>
         <div className="relative">
           <div className="absolute -inset-3 rotate-2 rounded-[2rem] bg-gradient-warm opacity-60" />
-          <img src={hero} alt="Women engineers helping each other climb and tend a growing plant" width={1280} height={1024} className="relative rounded-[2rem] shadow-soft" />
+          <img src={hero} alt="A mentor and a younger engineer talking over coffee" width={1280} height={1024} className="relative rounded-[2rem] shadow-soft" />
         </div>
       </section>
 
