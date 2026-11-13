@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { ChevronDown } from "lucide-react";
 import { useState } from "react";
 import { PageHeader } from "@/components/SiteShell";
@@ -23,7 +23,7 @@ const HIRING = [
   { name: "Ask & follow up", tone: "tag-design", items: ["Ask: what does success look like in 6 months?", "Ask about team style, biggest challenges and how feedback works", "Ask about next steps and timing", "Send a tailored thank-you within 24 hours"] },
 ];
 
-function Section({ title, items, mark, groups, goal }: { goal?: string; title: string; items: string[]; mark: string; groups?: typeof RECRUITER }) {
+function Section({ title, items, mark, groups, goal, notes }: { goal?: string; notes?: string; title: string; items: string[]; mark: string; groups?: typeof RECRUITER }) {
   const [open, setOpen] = useState(false);
   return (
     <div className="rounded-3xl border border-border bg-card p-6 md:p-8">
@@ -32,6 +32,7 @@ function Section({ title, items, mark, groups, goal }: { goal?: string; title: s
         <span className={`inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full border-2 border-primary bg-primary/10 text-primary shadow-sm transition-all duration-300 group-hover:bg-primary group-hover:text-primary-foreground ${open ? "rotate-180" : ""}`} aria-hidden><ChevronDown size={22} strokeWidth={2.5} /></span>
       </button>
       {open && goal && <p className="mt-4 font-medium text-foreground">🎯 {goal}</p>}
+      {open && notes && <Link to="/sessions" className="mt-4 inline-flex items-center gap-2 rounded-full border border-primary px-4 py-2 text-sm font-medium text-primary transition hover:bg-primary hover:text-primary-foreground">📄 Session notes: {notes} →</Link>}
       {open && groups && <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">{groups.map((g, n) => (<div key={g.name} className={`rounded-2xl p-5 ${g.tone}`}><p className="text-xs font-semibold uppercase tracking-wider opacity-70">Step {n + 1}</p><h3 className="mt-1 text-lg font-bold">{g.name}</h3><ul className="mt-3 space-y-2 text-sm text-foreground/80">{g.items.map((i) => <li key={i} className="flex gap-2"><span>•</span><span>{i}</span></li>)}</ul></div>))}</div>}
       {open && !groups && <ul className="mt-5 grid gap-3 text-muted-foreground md:grid-cols-2">{items.map((i) => <li key={i}>{mark} {i}</li>)}</ul>}
     </div>
@@ -44,7 +45,7 @@ function Prep() {
       <PageHeader eyebrow="Interview prep" title="Walk in prepared" intro="Start with the basics that apply everywhere, then go deeper for your function." />
       <section className="mx-auto grid max-w-6xl gap-5 px-6 pb-20">
         <Section title="Recruiter interview" items={[]} mark="" groups={RECRUITER} goal="Goal: be clear on why you, why this role, and what you need." />
-        <Section title="Hiring manager & behavioral interview" items={[]} mark="" groups={HIRING} goal="Goal: show you can do the job, work well with people, and prove it with real stories." />
+        <Section title="Hiring manager & behavioral interview" items={[]} mark="" groups={HIRING} notes="Navigating Behavioral & Hiring Manager Interviews" goal="Goal: show you can do the job, work well with people, and prove it with real stories." />
         {interviewPrep.functions.map((f) => <Section key={f.name} title={f.name} items={f.items} mark="—" />)}
       </section>
     </>
