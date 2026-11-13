@@ -65,7 +65,7 @@ export function SiteShell({ children }: { children: ReactNode }) {
             </TooltipProvider>
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Button variant="ghost" size="sm" className="ml-1 rounded-full">
+                <Button variant="secondary" size="sm" className="ml-1 rounded-full bg-sage/20 text-forest hover:bg-sage/30">
                   {name.split(" ")[0]} <ChevronDown aria-hidden="true" />
                 </Button>
               </DropdownMenuTrigger>
