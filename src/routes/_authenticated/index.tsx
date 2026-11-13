@@ -26,11 +26,11 @@ const why = [
 ];
 
 const how = [
-  { icon: Code2, title: "Build technical confidence", text: "From system design to AI-assisted coding, we learn together and make room for questions you might hesitate to ask at work." },
-  { icon: Compass, title: "Make the next move less lonely", text: "Connect with peers and senior leaders for honest conversations about interviews, career pivots and stepping into leadership." },
-  { icon: MessagesSquare, title: "Talk about the unspoken", text: "A safe space for self-doubt, workplace challenges and work-life balance — with shared experience, not judgment." },
-  { icon: Mic2, title: "Learn from women who've been there", text: "Go beyond the polished career story. Share the decisions, setbacks and lessons behind a woman’s path in engineering." },
-  { icon: Sprout, title: "Turn support into advocacy", text: "Celebrate each other’s work, share opportunities and speak up for one another. Progress is something we build together." },
+  { icon: Code2, title: "Learn together", text: "Technical skills, career growth and leadership." },
+  { icon: Compass, title: "Find your people", text: "Connect with peers, mentors and senior leaders." },
+  { icon: MessagesSquare, title: "Keep it real", text: "Honest conversations, without judgment." },
+  { icon: Mic2, title: "Share experience", text: "Learn from women who've walked the path." },
+  { icon: Sprout, title: "Lift each other up", text: "Share opportunities and advocate for one another." },
 ];
 
 function Index() {
@@ -99,22 +99,19 @@ function Index() {
       </section>
 
       <section aria-labelledby="how-heading" className="border-y border-sage/25 bg-secondary/40">
-        <div className="mx-auto grid max-w-6xl gap-10 px-6 py-16 md:py-20 lg:grid-cols-[0.85fr_1.4fr] lg:gap-20">
+        <div className="mx-auto max-w-6xl px-6 py-10 md:py-12">
           <div>
             <p className="flex items-center gap-3 text-sm font-semibold text-primary"><span aria-hidden="true" className="h-px w-8 bg-primary" />How we do it</p>
-            <h2 id="how-heading" className="mt-5 max-w-sm text-3xl font-bold leading-tight tracking-normal text-forest md:text-4xl">Growth isn’t a solo project.</h2>
-            <p className="mt-5 max-w-sm leading-relaxed text-muted-foreground">For women in engineering at Miro, connection is more than networking. It’s a place to ask the hard questions, find your voice and help someone else find theirs.</p>
-            <p className="mt-8 border-l-2 border-primary pl-4 text-sm font-medium text-forest">Different roles. Shared experiences.<br />A stronger community.</p>
+            <h2 id="how-heading" className="mt-3 text-2xl font-bold tracking-normal text-forest">Growth isn’t a solo project.</h2>
           </div>
-          <ol className="divide-y divide-sage/30 border-y border-sage/30">
-            {how.map(({ icon: Icon, title, text }, i) => (
-              <li key={title} className="group grid grid-cols-[2.5rem_1fr] gap-4 py-6 first:pt-6 motion-safe:transition-transform motion-safe:duration-200 motion-safe:hover:translate-x-1 sm:grid-cols-[2.5rem_1fr_2rem]">
-                <span aria-hidden="true" className="pt-1 font-display text-sm font-medium tabular-nums text-primary">0{i + 1}</span>
+          <ol className="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-5">
+            {how.map(({ icon: Icon, title, text }) => (
+              <li key={title} className="flex gap-3 border-t border-sage/30 pt-4">
+                <Icon aria-hidden="true" className="mt-0.5 size-4 shrink-0 text-primary" strokeWidth={1.5} />
                 <div>
-                  <h3 className="text-lg font-semibold tracking-normal text-forest">{title}</h3>
-                  <p className="mt-2 max-w-lg text-sm leading-relaxed text-muted-foreground">{text}</p>
+                  <h3 className="text-sm font-semibold tracking-normal text-forest">{title}</h3>
+                  <p className="mt-1 text-sm leading-relaxed text-muted-foreground">{text}</p>
                 </div>
-                <Icon aria-hidden="true" className={`mt-1 hidden size-5 sm:block ${i % 2 === 0 ? "text-primary" : "text-forest"}`} strokeWidth={1.5} />
               </li>
             ))}
           </ol>
