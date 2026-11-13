@@ -13,6 +13,7 @@ import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as JoinRouteImport } from './routes/join'
 import { Route as AuthenticatedIndexRouteImport } from './routes/_authenticated/index'
+import { Route as AuthenticatedAdminRouteImport } from './routes/_authenticated/admin'
 import { Route as AuthenticatedInterviewPrepRouteImport } from './routes/_authenticated/interview-prep'
 import { Route as AuthenticatedJobsRouteImport } from './routes/_authenticated/jobs'
 import { Route as AuthenticatedMentorshipRouteImport } from './routes/_authenticated/mentorship'
@@ -36,6 +37,11 @@ const JoinRoute = JoinRouteImport.update({
 const AuthenticatedIndexRoute = AuthenticatedIndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedAdminRoute = AuthenticatedAdminRouteImport.update({
+  id: '/admin',
+  path: '/admin',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
 const AuthenticatedInterviewPrepRoute =
@@ -70,6 +76,7 @@ export interface FileRoutesByFullPath {
   '/': typeof AuthenticatedIndexRoute
   '/auth': typeof AuthRoute
   '/join': typeof JoinRoute
+  '/admin': typeof AuthenticatedAdminRoute
   '/interview-prep': typeof AuthenticatedInterviewPrepRoute
   '/jobs': typeof AuthenticatedJobsRoute
   '/mentorship': typeof AuthenticatedMentorshipRoute
@@ -79,6 +86,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/auth': typeof AuthRoute
   '/join': typeof JoinRoute
+  '/admin': typeof AuthenticatedAdminRoute
   '/interview-prep': typeof AuthenticatedInterviewPrepRoute
   '/jobs': typeof AuthenticatedJobsRoute
   '/mentorship': typeof AuthenticatedMentorshipRoute
@@ -91,6 +99,7 @@ export interface FileRoutesById {
   '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
   '/auth': typeof AuthRoute
   '/join': typeof JoinRoute
+  '/_authenticated/admin': typeof AuthenticatedAdminRoute
   '/_authenticated/interview-prep': typeof AuthenticatedInterviewPrepRoute
   '/_authenticated/jobs': typeof AuthenticatedJobsRoute
   '/_authenticated/mentorship': typeof AuthenticatedMentorshipRoute
@@ -104,6 +113,7 @@ export interface FileRouteTypes {
     | '/'
     | '/auth'
     | '/join'
+    | '/admin'
     | '/interview-prep'
     | '/jobs'
     | '/mentorship'
@@ -113,6 +123,7 @@ export interface FileRouteTypes {
   to:
     | '/auth'
     | '/join'
+    | '/admin'
     | '/interview-prep'
     | '/jobs'
     | '/mentorship'
@@ -124,6 +135,7 @@ export interface FileRouteTypes {
     | '/_authenticated'
     | '/auth'
     | '/join'
+    | '/_authenticated/admin'
     | '/_authenticated/interview-prep'
     | '/_authenticated/jobs'
     | '/_authenticated/mentorship'
@@ -168,6 +180,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedIndexRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/admin': {
+      id: '/_authenticated/admin'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof AuthenticatedAdminRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/interview-prep': {
       id: '/_authenticated/interview-prep'
       path: '/interview-prep'
@@ -207,6 +226,7 @@ declare module '@tanstack/react-router' {
 }
 
 interface AuthenticatedRouteRouteChildren {
+  AuthenticatedAdminRoute: typeof AuthenticatedAdminRoute
   AuthenticatedInterviewPrepRoute: typeof AuthenticatedInterviewPrepRoute
   AuthenticatedJobsRoute: typeof AuthenticatedJobsRoute
   AuthenticatedMentorshipRoute: typeof AuthenticatedMentorshipRoute
@@ -216,6 +236,7 @@ interface AuthenticatedRouteRouteChildren {
 }
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
+  AuthenticatedAdminRoute: AuthenticatedAdminRoute,
   AuthenticatedInterviewPrepRoute: AuthenticatedInterviewPrepRoute,
   AuthenticatedJobsRoute: AuthenticatedJobsRoute,
   AuthenticatedMentorshipRoute: AuthenticatedMentorshipRoute,
