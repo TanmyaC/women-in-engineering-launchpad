@@ -30,7 +30,7 @@ export function AuthorBadge({ initials, className = "", entry }: {
   const remove = async () => {
     if (!entry || !window.confirm("Delete this entry? This can't be undone.")) return;
     setBusy(true);
-    const { error } = await supabase.from(entry.table).delete().eq("id", entry.id);
+    const { error } = await (supabase.from(entry.table as "topics").delete().eq("id", entry.id));
     setBusy(false);
     if (error) { toast.error("Couldn't delete this entry."); return; }
     toast.success("Deleted");
