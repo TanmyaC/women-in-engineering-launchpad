@@ -1,3 +1,4 @@
+import { ChevronDown } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { aiJobJourney as j } from "@/data/content";
 
@@ -28,12 +29,13 @@ export function AiJobJourney() {
   return (
     <section ref={ref} className="mx-auto max-w-6xl px-6 pb-16">
       <div className="rounded-3xl bg-forest p-6 text-forest-foreground md:p-10">
-        <button type="button" onClick={() => setOpen((o) => !o)} aria-expanded={open} className="flex w-full items-start justify-between gap-4 text-left">
+        <button type="button" onClick={() => setOpen((o) => !o)} aria-expanded={open} className="group flex w-full items-center justify-between gap-4 text-left">
         <div {...reveal(0)}>
           <p className="text-sm font-semibold uppercase tracking-widest opacity-80">Your roadmap</p>
           <h2 className="mt-2 text-3xl font-bold md:text-4xl">{j.title}</h2>
           <p className="mt-2 text-lg opacity-90">{j.tagline}</p>
         </div>
+          <span className={`inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full border-2 border-accent bg-accent/15 text-forest-foreground shadow-sm transition-all duration-300 group-hover:bg-accent group-hover:text-accent-foreground ${open ? "rotate-180" : ""}`} aria-hidden><ChevronDown size={22} strokeWidth={2.5} /></span>
         </button>
         <div className={`grid transition-all duration-500 ease-out ${open ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"}`}>
         <div className="overflow-hidden">
