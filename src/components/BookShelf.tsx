@@ -13,6 +13,9 @@ const schema = z.object({
 const THEMES = ["Leadership", "Career growth", "Management", "Product", "Design", "Communication", "Mindset"];
 const input = "w-full rounded-lg border border-input bg-background px-3 py-2 font-normal outline-none focus:ring-2 focus:ring-ring";
 
+const TAGS: Record<string, string> = { leadership: "tag-leadership", "career growth": "tag-career", management: "tag-management", product: "tag-product", design: "tag-design", communication: "tag-communication", mindset: "tag-mindset" };
+const tagClass = (t: string) => TAGS[t.toLowerCase()] ?? "tag-other";
+
 export function BookShelf() {
   const qc = useQueryClient();
   const [open, setOpen] = useState(false);
@@ -70,7 +73,7 @@ export function BookShelf() {
         {books.map((b) => (
           <div key={b.id} className="flex flex-col overflow-hidden rounded-[var(--radius)] border border-border bg-card shadow-soft transition hover:-translate-y-1">
             <div className="p-5">
-              <div className="mb-3 flex items-center justify-between gap-2"><BookOpen className="h-7 w-7 text-primary" />{b.theme && <span className="rounded-full bg-secondary px-3 py-1 text-xs font-medium text-forest">{b.theme}</span>}</div>
+              <div className="mb-3 flex items-center justify-between gap-2"><BookOpen className="h-7 w-7 text-primary" />{b.theme && <span className={`rounded-full px-3 py-1 text-xs font-semibold ${tagClass(b.theme)}`}>{b.theme}</span>}</div>
               <h3 className="text-lg font-bold text-forest">{b.title}</h3>
               <p className="mt-2 whitespace-pre-line text-sm text-muted-foreground">{b.why}</p>
             </div>
