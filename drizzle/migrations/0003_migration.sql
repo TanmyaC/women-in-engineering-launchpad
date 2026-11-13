@@ -1,0 +1,1 @@
+ALTER TABLE public.job_tools ADD COLUMN url text CHECK (url IS NULL OR (char_length(url) <= 300 AND url LIKE 'https://%'));
