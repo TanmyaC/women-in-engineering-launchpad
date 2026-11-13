@@ -1,5 +1,6 @@
 import { AuthorBadge } from "@/components/AuthorBadge";
-import { Check, ChevronDown, Copy } from "lucide-react";
+import { Check, ChevronDown, Copy, Eye } from "lucide-react";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
 import { z } from "zod";
@@ -75,7 +76,7 @@ export function PromptLibrary() {
           <div key={t.id} className={cardClass}>
             <div className="flex items-start justify-between gap-3"><h3 className="text-xl font-bold text-forest">{t.title}</h3><AuthorBadge initials={t.author_initials} entry={{ table: "prompts", id: t.id, createdBy: t.created_by }} /></div>
             <p className="mt-2 whitespace-pre-line text-muted-foreground">{t.description}</p>
-            <PromptBox text={t.prompt} />
+            <PromptBox title={t.title} text={t.prompt} />
           </div>
         ))}
       </div>
@@ -85,15 +86,25 @@ export function PromptLibrary() {
   );
 }
 
-function PromptBox({ text }: { text: string }) {
+function PromptBox({ title, text }: { title: string; text: string }) {
   const [copied, setCopied] = useState(false);
+  const copy = () => { navigator.clipboard.writeText(text); setCopied(true); setTimeout(() => setCopied(false), 1500); };
   return (
-    <div className="relative mt-4 rounded-lg bg-muted p-3 pr-11">
-      <pre className="max-h-56 overflow-auto whitespace-pre-wrap font-mono text-sm text-foreground">{text}</pre>
-      <button type="button" aria-label="Copy prompt" onClick={() => { navigator.clipboard.writeText(text); setCopied(true); setTimeout(() => setCopied(false), 1500); }}
-        className="absolute right-2 top-2 inline-flex h-8 w-8 items-center justify-center rounded-md text-muted-foreground transition hover:bg-background hover:text-forest">
-        {copied ? <Check size={16} /> : <Copy size={16} />}
-      </button>
-    </div>
+    <Dialog>
+      <DialogTrigger asChild>
+        <button type="button" className="mt-4 inline-flex items-center gap-2 rounded-full border border-forest px-4 py-1.5 text-sm font-medium text-forest transition hover:bg-secondary">
+          <Eye size={15} aria-hidden="true" /> View prompt
+        </button>
+      </DialogTrigger>
+      <DialogContent className="max-w-2xl">
+        <DialogHeader><DialogTitle className="text-forest">{title}</DialogTitle></DialogHeader>
+        <pre className="max-h-[60vh] overflow-auto whitespace-pre-wrap rounded-lg bg-muted p-4 font-mono text-sm text-foreground">{text}</pre>
+        <div className="flex justify-end">
+          <button type="button" onClick={copy} className="inline-flex items-center gap-2 rounded-full bg-primary px-5 py-2 text-sm font-medium text-primary-foreground transition hover:opacity-90">
+            {copied ? <Check size={16} aria-hidden="true" /> : <Copy size={16} aria-hidden="true" />} {copied ? "Copied!" : "Copy to clipboard"}
+          </button>
+        </div>
+      </DialogContent>
+    </Dialog>
   );
 }
