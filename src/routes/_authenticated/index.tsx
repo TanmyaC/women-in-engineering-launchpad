@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { TopicBoard } from "@/components/TopicBoard";
 import { Button } from "@/components/ui/button";
-import { Code2, MessagesSquare, Compass, Mic2, Sprout, HeartHandshake, ShieldCheck } from "lucide-react";
+import { Code2, MessagesSquare, Compass, Mic2, Sprout, HeartHandshake, ShieldCheck, FileText, Target, BriefcaseBusiness, BookOpen, ArrowUpRight } from "lucide-react";
 import hero from "@/assets/hero-idea-wall.jpg";
 
 export const Route = createFileRoute("/_authenticated/")({
@@ -15,6 +15,14 @@ const why = [
   { icon: ShieldCheck, title: "Build confidence", text: "Work through self-doubt together." },
   { icon: HeartHandshake, title: "Mentor & be mentored", text: "Give and find support across Miro." },
 ];
+
+const explore = [
+  { to: "/sessions", icon: FileText, title: "Session notes", text: "Lessons from our conversations." },
+  { to: "/mentorship", icon: HeartHandshake, title: "Mentorship", text: "Find support. Share your experience." },
+  { to: "/interview-prep", icon: Target, title: "Interview prep", text: "Prepare with confidence." },
+  { to: "/jobs", icon: BriefcaseBusiness, title: "Finding a job", text: "Tools for your next career move." },
+  { to: "/resources", icon: BookOpen, title: "Resources", text: "Books and links worth sharing." },
+] as const;
 
 const how = [
   { icon: Code2, title: "Learn together", text: "Technical skills, career growth and leadership." },
