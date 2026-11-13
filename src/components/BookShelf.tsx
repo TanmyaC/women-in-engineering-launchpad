@@ -84,7 +84,7 @@ export function BookShelf() {
         {isLoading && <p className="text-muted-foreground">Loading books…</p>}
         {!isLoading && books.length === 0 && <p className="text-muted-foreground">No books yet — add the first one!</p>}
         {books.map((b) => (
-          <div key={b.id} className={`${cardClass} flex flex-col p-0 overflow-hidden transition hover:-translate-y-1`}>
+          <div key={b.id} className="flex flex-col overflow-hidden rounded-[var(--radius)] border border-border bg-card shadow-soft transition hover:-translate-y-1">
             <div className="flex aspect-[3/4] items-center justify-center bg-secondary">
               {b.coverUrl ? <img src={b.coverUrl} alt={`Cover of ${b.title}`} loading="lazy" className="h-full w-full object-cover" /> : <BookOpen className="h-12 w-12 text-forest/50" />}
             </div>
