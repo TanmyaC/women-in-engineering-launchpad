@@ -36,3 +36,4 @@ use the editor.
 - Mentor form validation lives in a shared schema with focused tests so optional profile links are validated before saving to Cloud.
 - All content routes live under `src/routes/_authenticated/` (Google sign-in + membership check via `is_member`); new members join only via `/join?code=...`, redeemed by the `redeem_invite` RPC, so community tables are readable/writable only by members.
 - Admin access uses public.user_roles + has_role; admin actions go through security-definer admin_* RPCs that check the role server-side.
+- Prompt creation and editing share one form; author-only edits are enforced by RLS and column-scoped grants to preserve ownership.

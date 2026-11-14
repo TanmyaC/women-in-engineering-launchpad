@@ -1,0 +1,2 @@
+GRANT UPDATE (title, description, prompt) ON public.prompts TO authenticated;
+CREATE POLICY "Member authors can edit own prompts" ON public.prompts FOR UPDATE TO authenticated USING (public.is_member(auth.uid()) AND created_by = auth.uid()) WITH CHECK (public.is_member(auth.uid()) AND created_by = auth.uid());
