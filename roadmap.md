@@ -1,4 +1,4 @@
-- [ ] Allow prompt authors to edit their own prompts and verify saved changes.
+- [x] Allow prompt authors to edit their own prompts; verified saving and refreshing while signed in.
 - [x] Replace mentor booking links with LinkedIn contact.
 - [x] Fix mentor profile saving after removing the booking link requirement; verified saving and refreshing.
 - [x] Make the Add yourself as a mentor button more visible; verified it opens the form and fits mobile.
