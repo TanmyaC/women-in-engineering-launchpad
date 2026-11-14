@@ -3,6 +3,7 @@ import { TopicBoard } from "@/components/TopicBoard";
 import { Button } from "@/components/ui/button";
 import { Code2, MessagesSquare, Compass, Mic2, Sprout, HeartHandshake, ShieldCheck, FileText, Target, BriefcaseBusiness, BookOpen, ArrowUpRight } from "lucide-react";
 import hero from "@/assets/hero-idea-wall.jpg";
+import linkedinLogo from "@/assets/linkedin-logo.png.asset.json";
 
 export const Route = createFileRoute("/_authenticated/")({
   head: () => ({ meta: [{ title: "Miro Women In Engineering — Our community home" }, { name: "description", content: "The home of Miro Women In Engineering: vote on session topics, find a mentor, prep for interviews and grow together." }, { property: "og:title", content: "Miro Women In Engineering — Our community home" }, { property: "og:description", content: "Vote on session topics, find a mentor, prep for interviews and grow together." }, { property: "og:type", content: "website" }, { name: "twitter:card", content: "summary_large_image" }] }),
@@ -46,7 +47,7 @@ function Index() {
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
             <Button asChild className="h-auto rounded-full px-6 py-3 text-base shadow-soft transition hover:scale-105">
-              <a href="https://www.linkedin.com/groups/42842291/" target="_blank" rel="noopener noreferrer">Join our LinkedIn group</a>
+              <a href="https://www.linkedin.com/groups/42842291/" target="_blank" rel="noopener noreferrer"><img src={linkedinLogo.url} alt="" aria-hidden="true" className="size-5 shrink-0 object-contain" />Join our LinkedIn group</a>
             </Button>
             <Link to="/mentorship" className="rounded-full border border-forest px-6 py-3 font-medium text-forest transition hover:bg-secondary">Find a mentor</Link>
           </div>
