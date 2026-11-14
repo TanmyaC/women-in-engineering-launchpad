@@ -33,13 +33,13 @@ export function PromptLibrary() {
     },
   });
   const add = useMutation({
-    mutationFn: async ({ values, id }: { values: z.infer<typeof schema>; id?: string }) => {
+    mutationFn: async ({ values, id }: { values: z.infer<typeof schema>; id: string | undefined }) => {
       const { error } = id
         ? await supabase.from("prompts").update(values).eq("id", id).select("id").single()
         : await supabase.from("prompts").insert(values);
       if (error) throw error;
     },
-    onSuccess: () => { qc.invalidateQueries({ queryKey: ["prompts"] }); setOpen(false); setEditing(null); },
+    onSuccess: async () => { await qc.invalidateQueries({ queryKey: ["prompts"] }); setOpen(false); setEditing(null); },
     onError: () => setError("Something went wrong. Please try again."),
   });
 
@@ -82,7 +82,7 @@ export function PromptLibrary() {
         {!isLoading && tools.length === 0 && <p className="text-muted-foreground">No prompts yet — share the first one!</p>}
         {tools.map((t) => (
           <div key={t.id} className={cardClass}>
-            <div className="flex items-start justify-between gap-3"><h3 className="text-xl font-bold text-forest">{t.title}</h3><AuthorBadge initials={t.author_initials} name={t.author_name} entry={{ table: "prompts", id: t.id, createdBy: t.created_by }} onEdit={add.isPending ? undefined : () => { setEditing(t); setError(null); setOpen(true); }} /></div>
+            <div className="flex items-start justify-between gap-3"><h3 className="text-xl font-bold text-forest">{t.title}</h3><AuthorBadge initials={t.author_initials} name={t.author_name} entry={{ table: "prompts", id: t.id, createdBy: t.created_by }} {...(add.isPending ? {} : { onEdit: () => { setEditing(t); setError(null); setOpen(true); } })} /></div>
             <p className="mt-2 whitespace-pre-line text-muted-foreground">{t.description}</p>
             <PromptBox title={t.title} text={t.prompt} />
           </div>
