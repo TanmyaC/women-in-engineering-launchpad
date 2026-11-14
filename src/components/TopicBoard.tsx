@@ -3,6 +3,7 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
 import { z } from "zod";
 import { supabase } from "@/integrations/supabase/client";
+import { UpcomingMeeting } from "@/components/UpcomingMeeting";
 
 type Topic = { id: string; title: string; votes: number; created_at: string; author_initials?: string | null; author_name?: string | null; created_by?: string | null };
 const KEY = "mwie-voted-topics";
@@ -123,6 +124,7 @@ export function TopicBoard() {
           })}
         </ul>
       </div>
+      <UpcomingMeeting />
     </div>
   );
 }

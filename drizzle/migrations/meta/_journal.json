@@ -176,6 +176,13 @@
       "when": 1794610368777,
       "tag": "0024_book_votes",
       "breakpoints": true
+    },
+    {
+      "idx": 25,
+      "version": "7",
+      "when": 1794650676169,
+      "tag": "0025_meetings",
+      "breakpoints": true
     }
   ]
 }
