@@ -1,0 +1,1 @@
+ALTER TABLE public.meetings ADD COLUMN topic text NOT NULL DEFAULT '', ADD COLUMN description text NOT NULL DEFAULT '';
