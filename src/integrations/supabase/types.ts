@@ -267,27 +267,33 @@ export type Database = {
           author_name: string | null
           created_at: string
           created_by: string | null
+          description: string
           id: string
           meet_url: string
           starts_at: string
+          topic: string
         }
         Insert: {
           author_initials?: string | null
           author_name?: string | null
           created_at?: string
           created_by?: string | null
+          description?: string
           id?: string
           meet_url: string
           starts_at: string
+          topic?: string
         }
         Update: {
           author_initials?: string | null
           author_name?: string | null
           created_at?: string
           created_by?: string | null
+          description?: string
           id?: string
           meet_url?: string
           starts_at?: string
+          topic?: string
         }
         Relationships: []
       }

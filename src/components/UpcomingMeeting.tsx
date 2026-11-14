@@ -5,14 +5,14 @@ import { supabase } from "@/integrations/supabase/client";
 import { AuthorBadge } from "@/components/AuthorBadge";
 import { meetingSchema } from "@/lib/meeting";
 
-type Meeting = { id: string; starts_at: string; meet_url: string; created_by: string | null; author_initials: string | null; author_name: string | null };
+type Meeting = { id: string; topic: string; description: string; starts_at: string; meet_url: string; created_by: string | null; author_initials: string | null; author_name: string | null };
 const pad = (n: number) => String(n).padStart(2, "0");
 
 export function UpcomingMeeting() {
   const qc = useQueryClient();
   const [open, setOpen] = useState(false);
   const [editId, setEditId] = useState<string | null>(null);
-  const [form, setForm] = useState({ date: "", time: "", meet_url: "" });
+  const [form, setForm] = useState({ topic: "", description: "", date: "", time: "", meet_url: "" });
   const [error, setError] = useState<string | null>(null);
 
   const { data: meeting } = useQuery({
@@ -25,11 +25,11 @@ export function UpcomingMeeting() {
   });
 
   const save = useMutation({
-    mutationFn: async (v: { starts_at: string; meet_url: string }) => {
+    mutationFn: async (v: { topic: string; description: string; starts_at: string; meet_url: string }) => {
       const { error } = editId ? await supabase.from("meetings").update(v).eq("id", editId) : await supabase.from("meetings").insert(v);
       if (error) throw error;
     },
-    onSuccess: () => { setOpen(false); setEditId(null); setForm({ date: "", time: "", meet_url: "" }); qc.invalidateQueries({ queryKey: ["meetings"] }); },
+    onSuccess: () => { setOpen(false); setEditId(null); setForm({ topic: "", description: "", date: "", time: "", meet_url: "" }); qc.invalidateQueries({ queryKey: ["meetings"] }); },
     onError: () => setError("Couldn't save the meeting — please try again."),
   });
 
@@ -43,7 +43,7 @@ export function UpcomingMeeting() {
 
   const startEdit = (m: Meeting) => {
     const d = new Date(m.starts_at);
-    setForm({ date: `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`, time: `${pad(d.getHours())}:${pad(d.getMinutes())}`, meet_url: m.meet_url });
+    setForm({ topic: m.topic, description: m.description, date: `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`, time: `${pad(d.getHours())}:${pad(d.getMinutes())}`, meet_url: m.meet_url });
     setEditId(m.id); setOpen(true); setError(null);
   };
 
@@ -55,9 +55,10 @@ export function UpcomingMeeting() {
         <div className="flex flex-wrap items-center gap-3">
           <CalendarDays aria-hidden="true" className="h-5 w-5 text-accent" />
           <p className="text-sm">
-            <span className="font-semibold">Upcoming meeting</span>
+            <span className="font-semibold">Upcoming meeting{meeting.topic ? `: ${meeting.topic}` : ""}</span>
             <span className="opacity-80"> · {new Date(meeting.starts_at).toLocaleString(undefined, { weekday: "short", day: "numeric", month: "short", hour: "2-digit", minute: "2-digit" })}</span>
           </p>
+          {meeting.description && <p className="w-full pl-8 text-sm opacity-70">{meeting.description}</p>}
           <a href={meeting.meet_url} target="_blank" rel="noopener noreferrer" className="rounded-full bg-accent px-4 py-1.5 text-sm font-medium text-accent-foreground transition hover:scale-105">Join</a>
           <AuthorBadge initials={meeting.author_initials} name={meeting.author_name} onEdit={() => startEdit(meeting)} entry={{ table: "meetings", id: meeting.id, createdBy: meeting.created_by }} className="text-forest-foreground [&_.badge-initials]:bg-forest-foreground/20 [&_.badge-initials]:text-forest-foreground" />
         </div>
@@ -70,6 +71,8 @@ export function UpcomingMeeting() {
       {open && (
         <form onSubmit={submit} className="flex flex-wrap items-center gap-2">
           <CalendarDays aria-hidden="true" className="h-5 w-5 text-accent" />
+          <input aria-label="Topic" placeholder="Topic" maxLength={120} value={form.topic} onChange={(e) => setForm({ ...form, topic: e.target.value })} className={`${input} min-w-0 flex-1`} />
+          <textarea aria-label="Description" placeholder="Description (optional)" maxLength={500} rows={2} value={form.description} onChange={(e) => setForm({ ...form, description: e.target.value })} className="w-full rounded-2xl bg-background px-4 py-2 text-sm text-foreground outline-none focus:ring-2 focus:ring-accent" />
           <input type="date" aria-label="Date" value={form.date} onChange={(e) => setForm({ ...form, date: e.target.value })} className={input} />
           <input type="time" aria-label="Time" value={form.time} onChange={(e) => setForm({ ...form, time: e.target.value })} className={input} />
           <input type="url" aria-label="Google Meet link" placeholder="https://meet.google.com/…" value={form.meet_url} onChange={(e) => setForm({ ...form, meet_url: e.target.value })} className={`${input} min-w-0 flex-1`} />
