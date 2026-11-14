@@ -261,6 +261,36 @@ export type Database = {
         }
         Relationships: []
       }
+      meetings: {
+        Row: {
+          author_initials: string | null
+          author_name: string | null
+          created_at: string
+          created_by: string | null
+          id: string
+          meet_url: string
+          starts_at: string
+        }
+        Insert: {
+          author_initials?: string | null
+          author_name?: string | null
+          created_at?: string
+          created_by?: string | null
+          id?: string
+          meet_url: string
+          starts_at: string
+        }
+        Update: {
+          author_initials?: string | null
+          author_name?: string | null
+          created_at?: string
+          created_by?: string | null
+          id?: string
+          meet_url?: string
+          starts_at?: string
+        }
+        Relationships: []
+      }
       members: {
         Row: {
           joined_at: string
